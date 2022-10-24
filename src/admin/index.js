@@ -1,8 +1,8 @@
 
 import { Navigate, Route, Routes } from "react-router-dom";
-import AdminIndex from "./link/link";
-import AdminSkin from "./skin/skin";
-import AdminSetting from "./setting/setting";
+import AdminIndex from "./link";
+import AdminSkin from "./skin";
+import AdminSetting from "./setting";
 import AdminNav from "../components/AdminNav";
 import "./index.css";
 
