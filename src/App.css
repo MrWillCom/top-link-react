@@ -1,0 +1,63 @@
+:root {
+  --black: #1d1d1f;
+  --gray-bg: #f2f2f2;
+}
+
+html,body {
+  margin: 0;
+  padding: 0;
+}
+
+body,input,textarea,select,button {
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: ltr;
+  text-align: left
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 600;
+  color: #1d1d1f
+}
+
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img {
+  display: block;
+  margin: 0
+}
+
+h1+*,h2+*,h3+*,h4+*,h5+*,h6+* {
+  margin-top: .8em
+}
+
+h1+h1,h1+h2,h1+h3,h1+h4,h1+h5,h1+h6,h2+h1,h2+h2,h2+h3,h2+h4,h2+h5,h2+h6,h3+h1,h3+h2,h3+h3,h3+h4,h3+h5,h3+h6,h4+h1,h4+h2,h4+h3,h4+h4,h4+h5,h4+h6,h5+h1,h5+h2,h5+h3,h5+h4,h5+h5,h5+h6,h6+h1,h6+h2,h6+h3,h6+h4,h6+h5,h6+h6 {
+  margin-top: .4em
+}
+
+p+h1,ul+h1,ol+h1,p+h2,ul+h2,ol+h2,p+h3,ul+h3,ol+h3,p+h4,ul+h4,ol+h4,p+h5,ul+h5,ol+h5,p+h6,ul+h6,ol+h6 {
+  margin-top: 1.6em
+}
+
+a {
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
