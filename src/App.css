@@ -42,6 +42,11 @@ a {
   text-decoration: none;
 }
 
+iframe {
+  border: 0;
+}
+
+
 .flex {
   display: flex;
 }
