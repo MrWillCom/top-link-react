@@ -1,0 +1,85 @@
+.link-root {
+    width: 100%;
+    background-color: var(--gray-bg);
+    height: calc(100vh - 52px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link-main {
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.link-tools {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2em 0em;
+}
+
+.link-card-add {
+    cursor: pointer;
+    width:100%;
+    max-width: 100%;
+    background-color: #8129d9;
+    height: 3rem;
+    line-height: 3rem;
+    border-radius: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-card-add:hover {
+    background-color: #5d18a2;
+}
+
+.link-add {
+    margin-right: 10px;
+}
+
+.link-add-magic {
+    margin-left: 10px;
+}
+
+.link-button {
+    cursor: pointer;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    overflow: visible;
+    border: none;
+    background-color: inherit;
+    color: white;
+    font-size: 16px;
+    font-weight: 550;
+}
+
+.button-icon {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+}
+
+.icon-music {
+    margin-right: -4px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(255, 160, 239);
+}
+
+.icon-pic {
+    margin-right: 4px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: rgb(255, 217, 58);
+}

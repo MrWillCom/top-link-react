@@ -9,7 +9,7 @@
 .admin-sidebar {
     width: 435px;
     height: 100vh;
-    border-left: 1px solid var(--gray-bg);
+    border-left: 1px solid  rgb(224 226 217 / 1);
 }
 
 @media only screen and (min-width: 992px) {
@@ -33,7 +33,7 @@
     height: 52px;
     line-height: 52px;
     padding: 0px 0px;
-    border-bottom: 1px solid var(--gray-bg);
+    border-bottom: 1px solid rgb(224 226 217 / 1);
 }
 
 .sidebar-header .title {
@@ -49,7 +49,6 @@
 }
 
 .sidebar-content {
-    width: 100%;
     height: calc(100vh - 52px);
     overflow-y: auto;
     overflow-x: hidden;
