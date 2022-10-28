@@ -1,5 +1,6 @@
 import "./link.css";
-import { MusicSvg, PictureSvg } from "../components/Svg";
+import { MusicSvg, PictureSvg} from "../components/Svg";
+import ControlCard from "../components/ControlCard";
 
 export default function AdminIndex() {
     return (
@@ -11,13 +12,17 @@ export default function AdminIndex() {
                     </div>
                     <div className="link-card-add link-add-magic">
                         <div className="button-icon icon-music">
-                            <MusicSvg size="16"></MusicSvg>
+                            <MusicSvg size="16" strokeWidth={1.6}></MusicSvg>
                         </div>
                         <div className="button-icon icon-pic">
-                            <PictureSvg size="16"></PictureSvg>
+                            <PictureSvg size="16" strokeWidth={1.5}></PictureSvg>
                         </div>
                         <button className="link-button">魔法链接</button>
                     </div>
+                </div>
+                <div className="link-control-box">
+                    <ControlCard></ControlCard>
+                    <ControlCard></ControlCard>
                 </div>
             </div>
         </div>
