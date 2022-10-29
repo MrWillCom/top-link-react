@@ -93,3 +93,7 @@
 .control-delete:hover {
     background-color: #e7e7e8;
 }
+
+.dragging {
+    cursor: grab;
+}

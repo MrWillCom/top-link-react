@@ -1,18 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Switch from "../components/button";
 import { CardItemSvg, PictureSvg, DeleteSvg, EditSvg } from "./Svg";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./ControlCard.css";
 
 
-export default function ControlCard() {
+export default function ControlCard(props) {
 
+    let { updateLink } = props;
     const refTitle = useRef();
     const refUrl = useRef();
 
-    /* state */
-    const [switched, setSwitched] = useState(false);
-    const [title, setTitle] = useState("标题");
-    const [url, setUrl] = useState("https://");
+    /* ----------  STATE ---------- */
+    const [link, setLink] = useState(props.link);
 
     // 是否在编辑标题
     const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -21,24 +21,35 @@ export default function ControlCard() {
     const [isEditingUrl, setIsEditingUrl] = useState(false);
 
 
+    /* ---------- LIFETIME ---------- */
 
-    /* function */
+    useEffect(()=>{
+        updateLink(link);
+    }, [link])
+
+    /* ---------- FUNCTION ---------- */
 
     // 点击了启用按钮
     const handleClickSwitch = () => {
-        setSwitched(!switched);
+        let newLink = { ...link };
+        newLink.is_show = !newLink.is_show;
+        setLink(newLink);
     }
 
     // input输入了 Title
     const handleInputTitle = (e) => {
         let { value } = e.target;
-        setTitle(value)
+        let newLink = { ...link };
+        newLink.title = value;
+        setLink(newLink);        
     };
 
     // input输入了 Url
     const handleInputUrl = (e) => {
         let { value } = e.target;
-        setUrl(value)
+        let newLink = { ...link };
+        newLink.url = value;
+        setLink(newLink);
     };
 
     // handleClickTitle
@@ -74,28 +85,28 @@ export default function ControlCard() {
                             <div className="content">
                                 <div className="title">
                                     <div className="content-edit" style={{ opacity: isEditingTitle ? '1' : '0', pointerEvents: isEditingTitle ? 'inherit' : 'none' }}>
-                                        <input ref={refTitle} className="input input-text-base input-title" type="text" value={title}
+                                        <input ref={refTitle} className="input input-text-base input-title" type="text" value={link.title}
                                             onChange={handleInputTitle} onBlur={handleTitleOnBlur}></input>
                                     </div>
                                     <div className="content-show" style={{ display: isEditingTitle ? "none" : "inline-flex" }} onClick={handleClickTitle}>
-                                        <div className="title-value input-text-base input-title">{title}</div>
+                                        <div className="title-value input-text-base input-title">{link.title}</div>
                                         <EditSvg size={12} className="input-svg"></EditSvg>
                                     </div>
                                 </div>
 
                                 <div className="url">
                                     <div className="content-edit" style={{ opacity: isEditingUrl ? '1' : '0', pointerEvents: isEditingUrl ? 'inherit' : 'none' }}>
-                                        <input ref={refUrl} className="input input-text-base input-title" type="text" value={url}
+                                        <input ref={refUrl} className="input input-text-base input-title" type="text" value={link.url}
                                             onChange={handleInputUrl} onBlur={handleUrlOnBlur}></input>
                                     </div>
                                     <div className="content-show" style={{ display: isEditingUrl ? "none" : "inline-flex" }} onClick={handleClickUrl}>
-                                        <div className="title-value input-text-base input-url">{url}</div>
+                                        <div className="title-value input-text-base input-url">{link.url}</div>
                                         <EditSvg size={12} className="input-svg"></EditSvg>
                                     </div>
                                 </div>
                             </div>
                             <div className="icon">
-                                <Switch on={switched} onClick={handleClickSwitch}></Switch>
+                                <Switch on={link.is_show} onClick={handleClickSwitch}></Switch>
                             </div>
                         </div>
                         <div className="control-magic">
