@@ -3,16 +3,18 @@
     background-color: var(--gray-bg);
     height: calc(100vh - 52px);
     display: flex;
+    flex-direction: row;
+}
+
+.link-main {
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.link-main {
+.link-box {
     width: 100%;
     max-width: 640px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .link-tools {

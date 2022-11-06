@@ -3,9 +3,20 @@ import { MusicSvg, PictureSvg } from "../components/Svg";
 import ControlCard from "../components/ControlCard";
 import { useState, useEffect } from "react";
 import { ReactSortable } from "react-sortablejs";
+import SiderBar from "./siderbar";
 
+import PubSub from "pubsub-js";
 
-export default function AdminIndex() {
+export default function AdminLink() {
+    const user = {
+        userName: "Austin",
+        pageBio: "I am a developer",
+        profilePicture: "https://avatars.githubusercontent.com/u/1680273?v=4",
+    }
+
+    const theme = {
+        color: "#000",
+    }
 
     /* ----------  STATE ---------- */
 
@@ -24,6 +35,7 @@ export default function AdminIndex() {
         cards.sort((a, b) => {
             return a.position - b.position;
         })
+        PubSub.publish("updateLinks", cards);
         setLinks(cards);
     }, [])
 
@@ -60,8 +72,9 @@ export default function AdminIndex() {
 
     return (
         <div className="link-root">
-            <div className="link-main">
-                <div className="link-tools">
+            <div className="link-main admin-left">
+               <div className="link-box">
+               <div className="link-tools">
                     <div className="link-card-add link-add">
                         <button className="link-button">添加新链接</button>
                     </div>
@@ -77,11 +90,7 @@ export default function AdminIndex() {
                 </div>
 
                 <ReactSortable
-                    className="link-control-box"
-                    sort={true}
-                    animation={150}
-                    easing="cubic-bezier(1, 0, 0, 1)"
-                    dragClass="dragging"
+                    className="link-control-box" sort={true} animation={150} easing="cubic-bezier(1, 0, 0, 1)" dragClass="dragging"
                     handle=".control-bar"
                     onStart={() => {
                         setIsSorting(true);
@@ -97,8 +106,13 @@ export default function AdminIndex() {
                         return <ControlCard link={item} key={item.lid} updateLink={updateLink}></ControlCard>;
                     })}
                 </ReactSortable>
-
+               </div>
             </div>
+
+            <div className="link-siderbar admin-right">
+                <SiderBar links={links} user={ user } theme={theme}></SiderBar>
+            </div>
+            
         </div>
     )
 }
