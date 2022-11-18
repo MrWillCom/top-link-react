@@ -31,3 +31,27 @@
 .switch.disabled {
     cursor: not-allowed;
 }
+
+.button-wraper .button-box {
+    box-sizing: inherit;
+    transition: all .3s;
+}
+
+.button-box {
+    flex:1 1 0%;
+    padding: 16px;
+}
+
+.button-wraper {
+    width: 100%;
+    min-width: 100%;
+}
+
+.button-wraper:hover {
+    transform: tanslateY(-3px);
+}
+
+.button.primary {
+    color: rgb(255, 255, 255);
+    background-color: rgb(10, 11, 13);
+}

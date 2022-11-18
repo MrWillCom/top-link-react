@@ -2,12 +2,13 @@
 import Switch from "../components/button";
 import { CardItemSvg, PictureSvg, DeleteSvg, EditSvg } from "./Svg";
 import { useState, useRef, useEffect } from "react";
+import { Button } from "./button";
 import "./ControlCard.css";
 
 
 export default function ControlCard(props) {
 
-    let { updateLink } = props;
+    let { updateLink, deleteLink } = props;
     const refTitle = useRef();
     const refUrl = useRef();
 
@@ -20,10 +21,12 @@ export default function ControlCard(props) {
     // 是否在编辑链接
     const [isEditingUrl, setIsEditingUrl] = useState(false);
 
+    // 扩展组件选择
+    const [extraId, setExtraId] = useState(0);
 
     /* ---------- LIFETIME ---------- */
 
-    useEffect(()=>{
+    useEffect(() => {
         updateLink(link);
     }, [link])
 
@@ -41,7 +44,7 @@ export default function ControlCard(props) {
         let { value } = e.target;
         let newLink = { ...link };
         newLink.title = value;
-        setLink(newLink);        
+        setLink(newLink);
     };
 
     // input输入了 Url
@@ -56,6 +59,11 @@ export default function ControlCard(props) {
     const handleClickTitle = () => {
         setIsEditingTitle(true);
         refTitle.current.focus();
+    }
+    // 点击删除按钮后
+    const handleDetele = () => {
+        // 展开删除确定组件
+        setExtraId(1);
     }
 
     //hanldeClickUrl 
@@ -114,15 +122,63 @@ export default function ControlCard(props) {
                                 <PictureSvg size="24" strokeWidth={1}></PictureSvg>
                                 <PictureSvg size="24" strokeWidth={1}></PictureSvg>
                             </div>
-                            <div className="control-delete">
+                            {/*  删除按钮 */}
+                            <div className="control-delete" onClick={handleDetele}>
                                 <DeleteSvg size={16}></DeleteSvg>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="link-control-extra">
-
+                    <SwitchExtraItem extraId={extraId} setExtraId={setExtraId} lid={link.lid} deleteLink={deleteLink}></SwitchExtraItem>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+
+// 根据编号选择子组件
+function SwitchExtraItem(props) {
+    switch (props.extraId) {
+        case 1:
+            return <ExtraControlDelete {...props}></ExtraControlDelete>
+        case 2:
+            return <ExtraControlEdit {...props}></ExtraControlEdit>
+        default:
+            return <></>
+    }
+}
+
+// extraId = 1, 删除链接组件
+export function ExtraControlDelete({deleteLink, lid, setExtraId}) {
+    const handleClickDelete = () => {
+        deleteLink(lid);
+    }
+    const handleClickCancle = () => {
+        setExtraId(0);
+    }
+    return (
+        <div className="extra-contron-item extra-control-delete">
+            <div className="header">删除</div>
+            <div className="content">是否要永久删除此链接?</div>
+            <div className="ops">
+                <Button primary onClick={handleClickDelete}>确定</Button>
+                <Button onClick={handleClickCancle}>取消</Button>
+            </div>
+        </div>
+    )
+}
+
+// extraId = 2
+export function ExtraControlEdit() {
+    return (
+        <div className="extra-contron-item extra-control-edit">
+            <div className="header">编辑</div>
+            <div className="content">是否要永久删除此链接?</div>
+            <div className="ops">
+                <Button primary>确定</Button>
+                <Button>取消</Button>
             </div>
         </div>
     )

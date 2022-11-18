@@ -149,5 +149,36 @@
 }
 
 .link-control-extra {
-    height: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.extra-contron-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-control-extra .header {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    background-color: rgb(235, 238, 241);
+}
+
+.link-control-extra .content {
+    padding: 15px;
+}
+
+.link-control-extra .ops {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
