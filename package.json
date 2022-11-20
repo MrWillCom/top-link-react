@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
+    "react-animate-height": "^3.0.5",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.3",
     "react-scripts": "5.0.1",

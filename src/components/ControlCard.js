@@ -3,6 +3,7 @@ import Switch from "../components/button";
 import { CardItemSvg, PictureSvg, DeleteSvg, EditSvg } from "./Svg";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "./button";
+import AnimateHeight from "react-animate-height";
 import "./ControlCard.css";
 
 
@@ -23,6 +24,8 @@ export default function ControlCard(props) {
 
     // 扩展组件选择
     const [extraId, setExtraId] = useState(0);
+
+    const [height, setHeight] = useState(0);
 
     /* ---------- LIFETIME ---------- */
 
@@ -64,6 +67,7 @@ export default function ControlCard(props) {
     const handleDetele = () => {
         // 展开删除确定组件
         setExtraId(1);
+        setHeight("auto")
     }
 
     //hanldeClickUrl 
@@ -123,14 +127,16 @@ export default function ControlCard(props) {
                                 <PictureSvg size="24" strokeWidth={1}></PictureSvg>
                             </div>
                             {/*  删除按钮 */}
-                            <div className="control-delete" onClick={handleDetele}>
+                            <div className="control-delete" onClick={handleDetele}  aria-expanded={ height !== 0 } aria-controls="exam">
                                 <DeleteSvg size={16}></DeleteSvg>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="link-control-extra">
-                    <SwitchExtraItem extraId={extraId} setExtraId={setExtraId} lid={link.lid} deleteLink={deleteLink}></SwitchExtraItem>
+                    <AnimateHeight id="exam" duration={500} height={height}> 
+                        <SwitchExtraItem extraId={extraId} setExtraId={setExtraId} lid={link.lid} deleteLink={deleteLink} setHeight={setHeight} height={height}></SwitchExtraItem>
+                    </AnimateHeight>
                 </div>
             </div>
         </div>
@@ -151,12 +157,13 @@ function SwitchExtraItem(props) {
 }
 
 // extraId = 1, 删除链接组件
-export function ExtraControlDelete({deleteLink, lid, setExtraId}) {
+export function ExtraControlDelete({deleteLink, lid, setExtraId, setHeight, height}) {
     const handleClickDelete = () => {
         deleteLink(lid);
     }
     const handleClickCancle = () => {
         setExtraId(0);
+        setHeight(0);
     }
     return (
         <div className="extra-contron-item extra-control-delete">
@@ -164,7 +171,7 @@ export function ExtraControlDelete({deleteLink, lid, setExtraId}) {
             <div className="content">是否要永久删除此链接?</div>
             <div className="ops">
                 <Button primary onClick={handleClickDelete}>确定</Button>
-                <Button onClick={handleClickCancle}>取消</Button>
+                <Button onClick={handleClickCancle} aria-expanded={ height !== 0 } aria-controls="exam">取消</Button>
             </div>
         </div>
     )
