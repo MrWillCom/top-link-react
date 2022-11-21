@@ -14,6 +14,23 @@
     border-left: 1px solid rgb(224 226 217 / 1);
 }
 
+.nav-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-user .title {
+    padding-right: 5px;
+    font-weight: 400;
+}
+
+.nav-user .link {
+    color: #8129d9;
+    text-decoration: underline;
+}
+
 .nav-header, .admin-left {
     width: calc(100% - 435px);
 }

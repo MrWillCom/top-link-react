@@ -9,6 +9,7 @@
     "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
     "react-animate-height": "^3.0.5",
+    "react-avatar-editor": "^13.0.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.3",
     "react-scripts": "5.0.1",

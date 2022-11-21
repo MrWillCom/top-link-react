@@ -102,3 +102,17 @@ export function EditSvg(props) {
     </svg>
   )
 }
+
+export function CloseSvg(props) {
+  const [size, setSize] = useState("24");
+  useEffect(() => {
+    if (props.size) {
+      setSize(props.size);
+    }
+  }, [props.size]);
+  return (
+  <svg height={size} viewBox="0 0 32 32" width={size} xmlns="http://www.w3.org/2000/svg">
+    <path d="m23.542371 10.62753-1.491936-1.4919365-5.914843 5.9148425-5.914843-5.9148425-1.4919365 1.4919365 5.9148425 5.914843-5.9148425 5.914843 1.4919365 1.491936 5.914843-5.914842 5.914843 5.914842 1.491936-1.491936-5.914842-5.914843z" fill="#656565" fillRule="evenodd" strokeWidth="1.058111"/>
+  </svg>
+  )
+}

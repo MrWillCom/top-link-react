@@ -4,10 +4,7 @@ import ControlCard from "../components/ControlCard";
 import { useState, useEffect } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { v4 as uuid } from "uuid";
-
 import SiderBar from "./siderbar";
-
-import PubSub from "pubsub-js";
 
 export default function AdminLink() {
     const user = {
@@ -26,8 +23,9 @@ export default function AdminLink() {
     const [isSorting, setIsSorting] = useState(false); // 控制卡片是否在排序中
 
     /* ---------- LIFETIME ---------- */
-
     useEffect(() => {
+
+
         let cards = [
             { thumb: "https://avatars.githubusercontent.com/u/1024025?v=4", title: "React 1", url: "https://reactjs.org/", lid: uuid(), is_show: true, position: 2 },
             { thumb: "https://avatars.githubusercontent.com/u/1024025?v=4", title: "React 2", url: "https://reactjs.org/", lid: uuid(), is_show: true, position: 3 },
@@ -37,7 +35,6 @@ export default function AdminLink() {
         cards.sort((a, b) => {
             return a.position - b.position;
         })
-        PubSub.publish("updateLinks", cards);
         setLinks(cards);
     }, [])
 
@@ -84,7 +81,6 @@ export default function AdminLink() {
     // 子组件更新link
     const updateLink = (data) => {
         let newLinks = [...links];
-        console.log("需要更新的数据", data);
         newLinks.forEach((link, index) => {
             if (link.lid === data.lid) {
                 newLinks[index] = data;

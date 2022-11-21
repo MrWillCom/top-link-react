@@ -102,3 +102,7 @@
 .dragging {
     cursor: grab;
 }
+
+.control-icons {
+    cursor: pointer;
+}

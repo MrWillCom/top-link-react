@@ -8,8 +8,8 @@ import React from "react";
 import "./index.css";
 
 export default function Admin() {
-    React.useEffect(() => {
-    }, []);
+
+
     return (
         /* 公共的头部 */
         <div className="admin flex flex-direction-column">

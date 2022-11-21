@@ -843,7 +843,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/plugin-transform-runtime@^7.16.4":
+"@babel/plugin-transform-runtime@^7.12.1", "@babel/plugin-transform-runtime@^7.16.4":
   "integrity" "sha512-PRH37lz4JU156lYFW1p8OxE5i7d6Sl/zV58ooyr+q1J1lnQPyg5tIiXlIwNVhJaY4W3TmOtdc8jqdXQcB1v5Yw=="
   "resolved" "https://registry.npmmirror.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.19.6.tgz"
   "version" "7.19.6"
@@ -7379,7 +7379,7 @@
     "kleur" "^3.0.3"
     "sisteransi" "^1.0.5"
 
-"prop-types@^15.5.9", "prop-types@^15.8.1":
+"prop-types@^15.5.9", "prop-types@^15.7.2", "prop-types@^15.8.1":
   "integrity" "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg=="
   "resolved" "https://registry.npmmirror.com/prop-types/-/prop-types-15.8.1.tgz"
   "version" "15.8.1"
@@ -7486,6 +7486,15 @@
     "regenerator-runtime" "^0.13.9"
     "whatwg-fetch" "^3.6.2"
 
+"react-avatar-editor@^13.0.0":
+  "integrity" "sha512-0xw63MbRRQdDy7YI1IXU9+7tTFxYEFLV8CABvryYOGjZmXRTH2/UA0mafe57ns62uaEFX181kA4XlGlxCaeXKA=="
+  "resolved" "https://registry.npmmirror.com/react-avatar-editor/-/react-avatar-editor-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "@babel/plugin-transform-runtime" "^7.12.1"
+    "@babel/runtime" "^7.12.5"
+    "prop-types" "^15.7.2"
+
 "react-dev-utils@^12.0.1":
   "integrity" "sha512-84Ivxmr17KjUupyqzFode6xKhjwuEJDROWKJy/BthkL7Wn6NJ8h4WE6k/exAv6ImS+0oZLRRW5j/aINMHyeGeQ=="
   "resolved" "https://registry.npmmirror.com/react-dev-utils/-/react-dev-utils-12.0.1.tgz"
@@ -7516,7 +7525,7 @@
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
 
-"react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 16.3", "react-dom@>= 16.8.0", "react-dom@>=16.8", "react-dom@>=16.8.0", "react-dom@>=16.9.0":
+"react-dom@^0.14.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>= 16.3", "react-dom@>= 16.8.0", "react-dom@>=16.8", "react-dom@>=16.8.0", "react-dom@>=16.9.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -7637,7 +7646,7 @@
     "classnames" "2.3.1"
     "tiny-invariant" "1.2.0"
 
-"react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>= 16.3", "react@>= 16.8.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0":
+"react@^0.14.0 || ^16.0.0 || ^17.0.0 || ^18.0.0", "react@^18.0.0", "react@^18.2.0", "react@>= 16", "react@>= 16.3", "react@>= 16.8.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.9.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmmirror.com/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
