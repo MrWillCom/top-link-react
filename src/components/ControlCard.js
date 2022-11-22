@@ -111,7 +111,9 @@ export default function ControlCard(props) {
         setHeight('auto');
     }
     const handleNewImage = e => {
-        setIconObj({ ...iconObj, image: e.target.files[0] });
+        if(e.target.files) {
+            setIconObj({ ...iconObj, image: e.target.files[0]});
+        }
     }
 
     const handleScale = e => {
@@ -137,7 +139,9 @@ export default function ControlCard(props) {
             let newLink = { ...link };
             newLink.thumb = `/images/thumb/${res.data.file_name}`
             setLink(newLink);
-            console.log(newLink)
+            // 关闭弹出层与编辑组件
+            setHeight(0);
+            setIsOverlayShow(false);
         }).catch(err => {
             console.log(err)
         })
