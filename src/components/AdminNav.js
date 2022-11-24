@@ -36,7 +36,7 @@ export default function AdminNav() {
     return (
         <div className="nav flex flex-direction-row  align-center">
             <MyNavLink to="/admin/link" text="链接" />
-            <MyNavLink to="/admin/skin" text="皮肤" />
+            <MyNavLink to="/admin/skin" text="主题" />
             <MyNavLink to="/admin/setting" text="设置" />
             <div className="nav-indicator" style={{left: navLeft}}></div>
             <Outlet></Outlet>

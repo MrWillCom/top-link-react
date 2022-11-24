@@ -1,49 +1,113 @@
 import "./link.css";
 import { MusicSvg, PictureSvg } from "../components/Svg";
 import ControlCard from "../components/ControlCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { v4 as uuid } from "uuid";
+import request from "../utils/request";
+import { setToken } from "../utils/request";
 import SiderBar from "./siderbar";
+import { debounceFunction } from "../utils/utils";
 
 export default function AdminLink() {
-    const user = {
-        userName: "Austin",
-        pageBio: "I am a developer",
-        profilePicture: "https://avatars.githubusercontent.com/u/1680273?v=4",
-    }
 
     const theme = {
-        color: "#000",
-    }
-
+        textColor: "#fff",
+    };
+    
     /* ----------  STATE ---------- */
-
+    const [user, setUser] = useState({});
+    const [setting, setSetting] = useState({});
     const [links, setLinks] = useState([]);
     const [isSorting, setIsSorting] = useState(false); // 控制卡片是否在排序中
 
     /* ---------- LIFETIME ---------- */
     useEffect(() => {
+        const getMe = () => {
+            request({
+                url: "/user/me",
+                method: "GET",
+                needToken: true,
+            }).then(res => {
 
+                console.log("get me successfully", res.data);
+                setUser(res.data);
+                // 获取并设置用户设置信息
+                getSetting(res.data.user_name);
+                // 获取用户链接相关信息
+                getLinks(res.data.user_name);;
 
-        let cards = [
-            { thumb: "https://avatars.githubusercontent.com/u/1024025?v=4", title: "React 1", url: "https://reactjs.org/", lid: uuid(), is_show: true, position: 2 },
-            { thumb: "https://avatars.githubusercontent.com/u/1024025?v=4", title: "React 2", url: "https://reactjs.org/", lid: uuid(), is_show: true, position: 3 },
-            { thumb: "https://avatars.githubusercontent.com/u/1024025?v=4", title: "React 3", url: "https://reactjs.org/", lid: uuid(), is_show: true, position: 1 },
-            { thumb: "https://avatars.githubusercontent.com/u/10203793?v=4", title: "very very very 4 ", url: "https://reactjs.org/", lid: uuid(), is_show: true, position: 4 },
-        ];
-        cards.sort((a, b) => {
-            return a.position - b.position;
-        })
-        setLinks(cards);
+            }).catch(err => {
+                console.log("get me failed", err);
+            })
+        }
+        getMe();
     }, [])
 
     // 检测 links 发生的变化
     useEffect(() => {
-        console.log("links changed", links);
+        // 向服务器提交更新
+        if (links.length) {
+            debounceSyncLinks(links)
+        }
     }, [links])
 
     /* ---------- FUNCTION ---------- */
+    const syncLinks = (links) => {
+        request({
+            url: "/links",
+            method: "POST",
+            needToken: true,
+            data: {links: links}
+        }).then(res => {
+            console.log("sync links successfully", links);
+        }).catch(err => {
+            console.log("sync links failed", err);
+        })
+    }
+
+    const debounceSyncLinks = useCallback(
+        debounceFunction((newLinks) => syncLinks(newLinks), 300),
+        []
+    );
+
+    const login = () => {
+        request({
+            url: "/user/login",
+            method: "POST",
+            data: { user_name: "austin", password: "test" }
+        }).then((res) => {
+            setToken(res.data.access_token);
+            console.log("login successfully, token: ", res.data.access_token);
+        })
+    }
+
+    const getSetting = (username) => {
+        request({
+            url: `/setting/${username}`,
+            method: "GET",
+        }).then(res => {
+            console.log("get user successfully", res.data);
+            setSetting(res.data);
+            // 获取并设置用户信息
+        }).catch(err => {
+            console.log("get user failed", err);
+        })
+    }
+
+    const getLinks = (username) => {
+        request({
+            'url': `/links/${username}`,
+            'method': 'GET',
+            needToken: true
+        }).then(res => {
+            let cards = res.data;
+            cards.sort((a, b) => {
+                return a.position - b.position;
+            })
+            setLinks(cards);
+        })
+    }
 
     const updateOrder = (updatedList) => {
         if (!isSorting) return;
@@ -60,14 +124,19 @@ export default function AdminLink() {
     /* 添加一个新的链接 */
     const addNewLink = () => {
         let newLink = {
-            thumb: "https://avatars.githubusercontent.com/u/10203793?v=4",
-            title: "the top",
+            thumb: "/images/thumb.jpg",
+            title: "编辑标题与链接",
             url: "https://the.top/",
             lid: uuid(),
-            is_show: false,
-            position: links.length + 1,
+            show: false,
+            position: 1,
         };
-        setLinks([newLink, ...links]);
+        
+        let newLinks = [newLink, ...links];
+        newLinks.forEach((link, index) => {
+            link.position = index + 1;
+        });
+        setLinks(newLinks);
     }
 
     // 删除一个链接
@@ -109,7 +178,7 @@ export default function AdminLink() {
                     </div>
 
                     <ReactSortable
-                        className="link-control-box" sort={true} 
+                        className="link-control-box" sort={true}
                         animation={250} easing="cubic-bezier(1, 0, 0, 1)"
                         dragClass="dragging"
                         handle=".control-bar"
@@ -131,7 +200,7 @@ export default function AdminLink() {
             </div>
 
             <div className="link-siderbar admin-right">
-                <SiderBar links={links} user={user} theme={theme}></SiderBar>
+                <SiderBar links={links} setting={setting} theme={theme}></SiderBar>
             </div>
 
         </div>

@@ -1,20 +1,21 @@
 import React from 'react'
 import Frame from "react-frame-component"
-import  {FrameContextConsumer}  from "react-frame-component"
+import { FrameContextConsumer } from "react-frame-component"
 import { StyleSheetManager, withTheme, ThemeProvider } from 'styled-components'
 
 export default withTheme((props) => {
   const {
     refs,
     theme,
-    style = { },
+    style = {},
     children,
     ...rest
   } = props
 
   return (
     <Frame
-      ref = {refs}
+     initialContent='<!DOCTYPE html><html><head></head><style>body{margin:0px;}</style><body><div id="mountHere"></div></body></html>' 
+      ref={refs}
       style={{
         ...style
       }}

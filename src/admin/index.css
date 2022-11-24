@@ -46,7 +46,11 @@
 }
 
 @media only screen and (min-width: 1260px) {
+    .admin-right {
+        width: 570px;
+        border-left: 1px solid rgb(224 226 217 / 1);
+    }
     .nav-header, .admin-left {
-        width: calc(100% - 435px);
+        width: calc(100% - 570px);
     }
 }

@@ -58,7 +58,7 @@ export default function ControlCard(props) {
     // 点击了启用按钮
     const handleClickSwitch = () => {
         let newLink = { ...link };
-        newLink.is_show = !newLink.is_show;
+        newLink.show = !newLink.show;
         setLink(newLink);
     }
 
@@ -125,6 +125,8 @@ export default function ControlCard(props) {
         setIconObj({ ...iconObj, position: position })
     }
 
+    const setEitorRef = (ed) => editor = ed;
+
     const handleIconResult = () => {
         // const canvas = refEditor.current.getImage()
         // If you want the image resized to the canvas size (also a HTMLCanvasElement)
@@ -133,7 +135,7 @@ export default function ControlCard(props) {
             url: "/upload/icon",
             method: "POST",
             needToken: true,
-            data: {data: canvasScaledData}, 
+            data: {image_b64: canvasScaledData, origin: link.thumb}, 
         }).then(res => {
             console.log(res)
             let newLink = { ...link };
@@ -147,9 +149,7 @@ export default function ControlCard(props) {
         })
     }
 
-    const setEditor = (ed) => {
-        editor = ed;
-    }
+
 
     return (
         <div className="link-control-item-box">
@@ -157,7 +157,7 @@ export default function ControlCard(props) {
                 <div className="editor-box">
                     <div className="editor-canvas">
                         <ReactAvatarEditor
-                            ref={setEditor}
+                            ref={setEitorRef}
                             scale={parseFloat(iconObj.scale)}
                             width={iconObj.width}
                             height={iconObj.height}
@@ -230,7 +230,7 @@ export default function ControlCard(props) {
                                 </div>
                             </div>
                             <div className="icon">
-                                <Switch on={link.is_show} onClick={handleClickSwitch}></Switch>
+                                <Switch on={link.show} onClick={handleClickSwitch}></Switch>
                             </div>
                         </div>
                         <div className="control-magic">

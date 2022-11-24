@@ -1,34 +1,59 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { VerifySvg } from "./Svg";
+
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-`;
-
-export const Pagediv = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 100%;
+  position: relative;
+  padding-bottom: 0px;
+  min-height: 100vh;
+  overflow-x: hidden;
   width: 100%;
+  height: 100%;
+  display: flex;
 `;
 
-export const Cover = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: rgb(235, 238, 241);
+export const Wraper = styled.div`
+  flex: 1 1 0%;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 64px 16px 32px;
+  height: 100%;
+  display: flex;
+`;
+
+export const ProfileBox = styled.div`
+  margin: 0px auto;
+  height: 100%;
+  width: 100%;
+  max-width: 680px;
+`;
+
+export const Footer = styled.div`
+  margin-top: 32px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  font: inherit;
+  vertical-align: baseline;
+`;
+
+export const FooterBox = styled.div`
+  cursor: pointer;
+  display: flex;
+  height: 20px;
+  width: 100%;
+  -webkit-box-pack: center;
+  justify-content: center;
+`;
+
+export const FooterContent = styled.div`
+  color: ${(props) => props.theme.textColor};
+  font-size: 16px;
+  font-weight: 600;
 `;
 
 const Profile = styled.div`
@@ -48,95 +73,121 @@ const ProfileImg = styled.img`
   height: 96px;
 `;
 
+const ProfielTitle = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 const UserName = styled.div`
-  font-size: 16px;
+  color: ${(props) => props.theme.textColor};
+  font-size: 20px;
   font-weight: bold;
+  margin-right: 4px;
 `;
 
 const UserBio = styled.div`
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
+  color: ${(props) => props.theme.textColor};
+  font-size: 16px;
   font-weight: 500;
 `;
 
 const Content = styled.div`
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 92%;
+  margin-top: 32px;
 `;
 
-const Classic = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 12px 12px;
+const BasicBg = styled.div`
+  position: fixed;
+  inset: 0px;
+  z-index: -1;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: rgb(0, 0, 0);
+`;
+
+const ColorBox = styled.div`
+  position: fixed;
+  inset: 0px;
+  z-index: -1;
+`;
+
+const Color = styled.div`
   width: 100%;
-  max-width: 640px;
-  min-height: 56px;
-  background-color: white;
-  border-radius: 16px;
-  cursor: pointer;
-  transform: transform 0.25s;
-  :hover {
-    transform: scale(1.046);
+  height: 100%;
+  position: relative;
+  &:before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background-image: url(/images/avatar.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    opacity: 0.25;
+    filter: blur(50px);
+  }
+  &:after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    height: 100%;
+    background-image: url(/images/noise.png);
+    background-repeat: repeat;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
   }
 `;
 
-const ClassicBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const LinkThumbImg = styled.img`
-  position: relative;
-  left: 8px;
-  border-radius: 12px;
-  width: 46px;
-  height: 46px;
-  object-fit: contain;
-  object-position: initial;
-`;
-
-const LinkText = styled.div`
-  font-weight: 500;
-  font-size: 14px;
-  margin: 0 auto;
-  padding-right: 48px;
-`;
-
-const VirtualLima = styled.div`
-  width: 46px;
-`;
 
 export default function UserProfile(props) {
-  const { user, devLinks } = props;
+  const { setting, devLinks } = props;
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
-    setLinks(devLinks);
+    let data = devLinks.filter((link) => link.show === true);
+    setLinks(data);
   }, [devLinks]);
 
+  
+  const handleClickFooter = () => {
+    window.open("/", "_blank");
+  }
   return (
     <Container>
-      <Pagediv>
-        <Cover />
-        <Profile>
-          <ProfileDivImg>
-            <ProfileImg src={user.profilePicture} />
-          </ProfileDivImg>
-          <UserName>{user.userName}</UserName>
-          <UserBio>{user.pageBio}</UserBio>
-        </Profile>
-        <Content>
-          <Links links={links}></Links>
-        </Content>
-      </Pagediv>
+      <Wraper>
+        <ProfileBox>
+          <BasicBg />
+          <ColorBox><Color /></ColorBox>
+          <Profile>
+            <ProfileDivImg>
+              <ProfileImg src={setting.profile_picture} />
+            </ProfileDivImg>
+
+            <ProfielTitle>
+              <UserName>{setting.page_title}</UserName>
+              <VerifySvg></VerifySvg>
+            </ProfielTitle>
+
+            <UserBio>{setting.page_bio}</UserBio>
+          </Profile>
+
+          <Content>
+            <Links links={links}></Links>
+          </Content>
+
+        </ProfileBox>
+
+        <Footer>
+          <FooterBox>
+            <FooterContent onClick={handleClickFooter}>Thetop</FooterContent>
+          </FooterBox>
+        </Footer>
+      </Wraper>
     </Container>
   );
 }
@@ -151,16 +202,119 @@ function Links({ links }) {
   });
 }
 
+
+export const LinkBox = styled.div`
+  position: relative;
+  height: auto;
+  border-radius: 4px;
+  z-index: 0;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgb(255, 255, 255);
+  transition: transform 0.15s cubic-bezier(0, 0.2, 0.5, 3) 0s;
+  box-shadow: rgb(10 11 13 / 8%) 0px 2px 4px 0px;
+  &:hover {
+    transform: scale(1.02);
+  }
+`;
+
+
+export const LinkThumb = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border-radius: 4px;
+  width: 48px;
+  height: 48px;
+`;
+
+export const ThumbImg = styled.img`
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0px;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: initial;
+`;
+
+export const LinkTitle = styled.p`
+  color: ${(props) => props.theme.textColor};
+  padding: 0px;
+  margin: 0px;
+  line-height: 1.5;
+  width: 100%;
+  font-weight: 500;
+  font-size: 14px;  
+  position: relative;
+  hyphens: none;
+  @media screen and (min-width: 576px) {
+    font-size: 16px;
+  }
+`;
+
+export const LinkWraper = styled.a`
+  margin: 0px;
+  border: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  text-decoration: none;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: auto;
+  position: relative;
+  padding: 16px 20px;
+  width: 100%;
+  appearance: none;
+  box-sizing: border-box;
+  vertical-align: middle;
+`;
+
+
+export const LinkContent = styled(LinkWraper)`
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  white-space: normal;
+  background: none;
+  color: inherit;
+  transition: box-shadow 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s, border-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s, transform 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s, background-color 0.25s cubic-bezier(0.08, 0.59, 0.29, 0.99) 0s;
+  padding-left: 66px;
+  padding-right: 66px;
+`;
+
+
+export const LinkDiv = styled.div`
+  position: relative;
+`;
+
 function Link(props) {
-  const handleClick = () => {
-    window.open(props.url, "_blank");
-  };
   return (
-    <Classic onClick={handleClick}>
-      <ClassicBox>
-        {props.thumb !== "nil" ? <LinkThumbImg src={props.thumb} alt="thumb" /> : <VirtualLima />}
-        <LinkText>{props.title}</LinkText>
-      </ClassicBox>
-    </Classic>
+    <LinkDiv>
+      <LinkDiv><LinkBox>
+        <LinkContent href={props.url} target="_blank">
+          <LinkThumb>
+            <ThumbImg src={props.thumb} />
+          </LinkThumb>
+          <LinkTitle>{props.title}</LinkTitle>
+        </LinkContent>
+      </LinkBox> </LinkDiv>
+    </LinkDiv>
   );
 }
