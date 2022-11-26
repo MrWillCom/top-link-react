@@ -4,9 +4,8 @@ import { CardItemSvg, PictureSvg, DeleteSvg, EditSvg } from "./Svg";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "./button";
 import AnimateHeight from "react-animate-height";
-import ReactAvatarEditor from "react-avatar-editor";
 import request from "../utils/request";
-import Overlay from "./Overlay";
+import ImageEditor from "./utily";
 import "./ControlCard.css";
 
 
@@ -15,7 +14,7 @@ export default function ControlCard(props) {
     let { updateLink, deleteLink } = props;
     const refTitle = useRef();
     const refUrl = useRef();
-    var editor = null;
+  
 
     /* ----------  STATE ---------- */
     const [link, setLink] = useState(props.link);
@@ -35,18 +34,6 @@ export default function ControlCard(props) {
     // 控制弹出层是否显示
     const [isOverlayShow, setIsOverlayShow] = useState(false);
 
-    // 图标编辑插件
-    const [iconObj, setIconObj] = useState({
-        image: link.thumb,
-        allowZoomOut: false,
-        position: { x: 0.5, y: 0.5 },
-        scale: 1,
-        rotate: 0,
-        borderRadius: 0,
-        preview: null,
-        width: 100,
-        height: 100,
-    });
     /* ---------- LIFETIME ---------- */
 
     useEffect(() => {
@@ -58,7 +45,7 @@ export default function ControlCard(props) {
     // 点击了启用按钮
     const handleClickSwitch = () => {
         let newLink = { ...link };
-        newLink.show = !newLink.show;
+        newLink.display = !newLink.display;
         setLink(newLink);
     }
 
@@ -110,32 +97,14 @@ export default function ControlCard(props) {
         setExtraId(2);
         setHeight('auto');
     }
-    const handleNewImage = e => {
-        if(e.target.files) {
-            setIconObj({ ...iconObj, image: e.target.files[0]});
-        }
-    }
+    
 
-    const handleScale = e => {
-        const scale = parseFloat(e.target.value)
-        setIconObj({ ...iconObj, scale: scale })
-    }
-
-    const handlePositionChange = position => {
-        setIconObj({ ...iconObj, position: position })
-    }
-
-    const setEitorRef = (ed) => editor = ed;
-
-    const handleIconResult = () => {
-        // const canvas = refEditor.current.getImage()
-        // If you want the image resized to the canvas size (also a HTMLCanvasElement)
-        const canvasScaledData = editor.getImageScaledToCanvas().toDataURL();
+    const handleIconResult = (imageData) => {
         request({
             url: "/upload/icon",
             method: "POST",
             needToken: true,
-            data: {image_b64: canvasScaledData, origin: link.thumb}, 
+            data: {image_b64: imageData, origin: link.thumb}, 
         }).then(res => {
             console.log(res)
             let newLink = { ...link };
@@ -169,55 +138,17 @@ export default function ControlCard(props) {
 
     return (
         <div className="link-control-item-box">
-            {isOverlayShow && <Overlay setIsOverlayShow={setIsOverlayShow} title="上传图片">
-                <div className="editor-box">
-                    <div className="editor-canvas">
-                        <ReactAvatarEditor
-                            ref={setEitorRef}
-                            scale={parseFloat(iconObj.scale)}
-                            width={iconObj.width}
-                            height={iconObj.height}
-                            position={iconObj.position}
-                            onPositionChange={handlePositionChange}
-                            rotate={parseFloat(iconObj.rotate)}
-                            borderRadius={iconObj.width / (100 / iconObj.borderRadius)}
-                            image={iconObj.image}
-                            className="editor-canvas"
-                        />
-                        <div className="editor-scale flex flex-row">
-                            <div className="scale-label">
-                                缩放:
-                            </div>
-                            <div className="scale-box">
-                                <input
-                                    name="scale"
-                                    type="range"
-                                    onChange={handleScale}
-                                    min={iconObj.allowZoomOut ? '0.1' : '1'}
-                                    max="2"
-                                    step="0.01"
-                                    defaultValue="1"
-                                />
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="editor-ops">
-                        <div className="editor-enter editor-button" onClick={handleIconRemove}>
-                            移除当前
-                        </div>
+            <ImageEditor 
+                title="上传图片"
+                imageObject = {link.thumb}
+                visible={isOverlayShow}
+                setVisible={setIsOverlayShow} 
+                hasRemove={true} 
+                handleRemove={handleIconRemove} 
+                handleResult={handleIconResult}
+            />
 
-                        <div className="editor-upload editor-button">
-                            上传图片
-                            <input name="newImage" type="file" onChange={handleNewImage} />
-                        </div>
-                        
-                        <div className="editor-enter editor-button" onClick={handleIconResult}>
-                            确定
-                        </div>
-                    </div>
-                </div>
-            </Overlay>}
             <div className="link-control-item">
                 <div className="link-control-content">
                     <div className="control-bar">
@@ -249,7 +180,7 @@ export default function ControlCard(props) {
                                 </div>
                             </div>
                             <div className="icon">
-                                <Switch on={link.show} onClick={handleClickSwitch}></Switch>
+                                <Switch on={link.display} onClick={handleClickSwitch}></Switch>
                             </div>
                         </div>
                         <div className="control-magic">

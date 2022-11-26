@@ -92,13 +92,14 @@ const UserName = styled.div`
 `;
 
 const UserBio = styled.div`
+  margin-top: 3px;
   color: ${(props) => props.theme.bio_color};
   font-size: 16px;
   font-weight: 500;
 `;
 
 const Content = styled.div`
-  margin-top: 32px;
+  margin-top: 48px;
 `;
 
 const BasicBg = styled.div`
@@ -155,7 +156,7 @@ export default function UserProfile(props) {
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
-    let data = devLinks.filter((link) => link.show === true);
+    let data = devLinks.filter((link) => link.display === true);
     setLinks(data);
   }, [devLinks]);
 
@@ -216,13 +217,16 @@ export const LinkBox = styled.div`
   z-index: 0;
   overflow: hidden;
   margin-bottom: 16px;
-  border: none;
+  border: 1px solid ${(props) => props.theme.link_border_color};
   background-color: ${(props) => props.theme.link_bg};
   color: ${(props) => props.theme.text_color};
   transition: transform 0.15s cubic-bezier(0, 0.2, 0.5, 3) 0s;
   box-shadow: rgb(10 11 13 / 8%) 0px 2px 4px 0px;
   &:hover {
-    transform: scale(1.02);
+    ${(props) => props.theme.is_link_scale && "transform: scale(1.02);"}
+    border-color: ${(props) => props.theme.link_border_color_hover};
+    background-color: ${(props) => props.theme.link_bg_hover};
+    color: ${(props) => props.theme.text_color_hover};
   }
 `;
 
@@ -255,7 +259,7 @@ export const ThumbImg = styled.img`
 `;
 
 export const LinkTitle = styled.p`
-  color: ${(props) => props.theme.text_color};
+  
   padding: 0px;
   margin: 0px;
   line-height: 1.5;

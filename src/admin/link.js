@@ -1,5 +1,5 @@
 import "./link.css";
-import { MusicSvg, PictureSvg } from "../components/Svg";
+import { MusicSvg, PictureSvg, PlusSvg } from "../components/Svg";
 import ControlCard from "../components/ControlCard";
 import { useState, useEffect, useCallback } from "react";
 import { ReactSortable } from "react-sortablejs";
@@ -137,7 +137,7 @@ export default function AdminLink() {
             title: "编辑标题与链接",
             url: "https://the.top/",
             lid: uuid(),
-            show: false,
+            display: false,
             position: 1,
         };
         
@@ -172,17 +172,10 @@ export default function AdminLink() {
             <div className="link-main admin-left">
                 <div className="link-box">
                     <div className="link-tools">
-                        <div className="link-card-add link-add">
-                            <button className="link-button" onClick={addNewLink}>添加新链接</button>
-                        </div>
-                        <div className="link-card-add link-add-magic">
-                            <div className="button-icon icon-music">
-                                <MusicSvg size="16" strokeWidth={1.6}></MusicSvg>
-                            </div>
-                            <div className="button-icon icon-pic">
-                                <PictureSvg size="16" strokeWidth={1.5}></PictureSvg>
-                            </div>
-                            <button className="link-button">魔法链接</button>
+                        <div className="link-card-add link-add" onClick={addNewLink}>
+                            <button className="link-button">
+                               <PlusSvg/ > 添加新链接
+                            </button>
                         </div>
                     </div>
 

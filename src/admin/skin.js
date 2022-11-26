@@ -26,7 +26,9 @@ export default function AdminSkin() {
                 method: "GET",
             }).then(res => {
                 console.log("get themes success", res.data);
-                setThemes(res.data);
+                let themes = res.data.filter(theme => {return theme.display !== false});
+                themes.sort((a, b) => {return a.position - b.position});
+                setThemes(themes);
             }).catch(err => {
                 console.log("get themes failed", err);
             })
@@ -102,7 +104,7 @@ export default function AdminSkin() {
     return (
         <div className="skin-root">
             <div className="skin-main admin-left">
-                <h3>主题列表</h3>
+                <h4>主题列表</h4>
                 <div className="skin-box">
                     <div className="skin-wraper">
                         <SkinList themes={themes} currTheme={currTheme} setCurrTheme={setCurrTheme}></SkinList>
@@ -149,9 +151,23 @@ const ThumbImg = styled.img`
 function SkinDetail(props) {
     const { thumb, title, name, currTheme, setCurrTheme} = props;
 
-    const changeCurrTheme = () => {
-        setCurrTheme(name);
+    const patchTheme = (name) => {
+        request({
+            url: `/setting/theme/${name}`,
+            method: "PATCH",
+            needToken: true,
+        }).then(res => {
+            setCurrTheme(name);
+            console.log("PATCH /setting/theme", res.data);
+        }).catch(err => {
+            console.log("PATCH /setting/theme failed", err);
+        })
     }
+
+    const changeCurrTheme = () => {
+        patchTheme(name);
+    }
+
     return (
         <div className="skin-detail" onClick={changeCurrTheme}>
             <div className="detail-box">
