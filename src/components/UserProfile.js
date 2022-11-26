@@ -8,20 +8,24 @@ export const Container = styled.div`
   flex-direction: column;
   position: relative;
   padding-bottom: 0px;
-  min-height: 100vh;
+  min-height: 95vh;
   overflow-x: hidden;
   width: 100%;
   height: 100%;
   display: flex;
 `;
 
-export const Wraper = styled.div`
+export const ContentWraper = styled.div`
   flex: 1 1 0%;
   flex-direction: column;
   -webkit-box-pack: justify;
   justify-content: space-between;
   padding: 64px 16px 32px;
   height: 100%;
+  width: 95%;
+`;
+
+export const Wraper = styled(ContentWraper)`
   display: flex;
 `;
 
@@ -51,7 +55,7 @@ export const FooterBox = styled.div`
 `;
 
 export const FooterContent = styled.div`
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.footer_color};
   font-size: 16px;
   font-weight: 600;
 `;
@@ -81,14 +85,14 @@ const ProfielTitle = styled.div`
 `;
 
 const UserName = styled.div`
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.title_color};
   font-size: 20px;
   font-weight: bold;
   margin-right: 4px;
 `;
 
 const UserBio = styled.div`
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.bio_color};
   font-size: 16px;
   font-weight: 500;
 `;
@@ -104,10 +108,12 @@ const BasicBg = styled.div`
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: rgb(0, 0, 0);
+  background:${(props) => props.theme.basic_bg}; 
 `;
 
+// 滤镜，包括头像和噪音滤镜
 const ColorBox = styled.div`
+  display: ${(props) => props.theme.has_filter ? "block" : "none"};
   position: fixed;
   inset: 0px;
   z-index: -1;
@@ -123,7 +129,7 @@ const Color = styled.div`
     width: 100%;
     height: 100%;
     top: 0px;
-    background-image: url(/images/avatar.jpg);
+    background-image: url(${(props) => props.profile_picture});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -162,7 +168,7 @@ export default function UserProfile(props) {
       <Wraper>
         <ProfileBox>
           <BasicBg />
-          <ColorBox><Color /></ColorBox>
+          <ColorBox><Color profile_picture={setting.profile_picture} /></ColorBox>
           <Profile>
             <ProfileDivImg>
               <ProfileImg src={setting.profile_picture} />
@@ -173,7 +179,7 @@ export default function UserProfile(props) {
               <VerifySvg></VerifySvg>
             </ProfielTitle>
 
-            <UserBio>{setting.page_bio}</UserBio>
+            {setting.page_bio && <UserBio>{setting.page_bio}</UserBio>}
           </Profile>
 
           <Content>
@@ -206,13 +212,13 @@ function Links({ links }) {
 export const LinkBox = styled.div`
   position: relative;
   height: auto;
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.link_border_radius};
   z-index: 0;
   overflow: hidden;
   margin-bottom: 16px;
   border: none;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: rgb(255, 255, 255);
+  background-color: ${(props) => props.theme.link_bg};
+  color: ${(props) => props.theme.text_color};
   transition: transform 0.15s cubic-bezier(0, 0.2, 0.5, 3) 0s;
   box-shadow: rgb(10 11 13 / 8%) 0px 2px 4px 0px;
   &:hover {
@@ -222,6 +228,7 @@ export const LinkBox = styled.div`
 
 
 export const LinkThumb = styled.div`
+  display: ${(props) => props.hasThumb ? "block" : "none"};
   position: absolute;
   top: 50%;
   left: 4px;
@@ -232,7 +239,7 @@ export const LinkThumb = styled.div`
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: ${(props) => props.theme.thumb_border_radius};
   width: 48px;
   height: 48px;
 `;
@@ -240,7 +247,7 @@ export const LinkThumb = styled.div`
 export const ThumbImg = styled.img`
   width: 100%;
   max-width: 100%;
-  border-radius: 0px;
+  border-radius: ${(props)=> props.theme.thumb_border_radius};
   display: block;
   height: 100%;
   object-fit: cover;
@@ -248,7 +255,7 @@ export const ThumbImg = styled.img`
 `;
 
 export const LinkTitle = styled.p`
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.text_color};
   padding: 0px;
   margin: 0px;
   line-height: 1.5;
@@ -309,7 +316,7 @@ function Link(props) {
     <LinkDiv>
       <LinkDiv><LinkBox>
         <LinkContent href={props.url} target="_blank">
-          <LinkThumb>
+          <LinkThumb hasThumb={props.thumb.length}>
             <ThumbImg src={props.thumb} />
           </LinkThumb>
           <LinkTitle>{props.title}</LinkTitle>

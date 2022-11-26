@@ -1,59 +1,84 @@
 import "./skin.css";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import request from "../utils/request";
+import styled from "styled-components";
 import SiderBar from "./siderbar";
 
 
 export default function AdminSkin() {
 
-    const theme = {
-        textColor: "#fff",
-    };
+ 
 
     /* ----------  STATE ---------- */
+    const [theme, setTheme] = useState({});
     const [setting, setSetting] = useState({});
     const [links, setLinks] = useState([]);
 
-    const themes = [
-        { name: "default", thumb: "/images/themes/default.png", "title": "默认" },
-        { name: "dark", thumb: "/images/themes/dark.png", "title": "暗黑" },
-        { name: "rainbow", thumb: "/images/themes/rainbow.png", "title": "彩虹" },
-        { name: "blue", thumb: "/images/themes/blue.png", "title": "灵动蓝" },
-        { name: "green", thumb: "/images/themes/green.png", "title": "清新绿" },
-        { name: "color", thumb: "/images/themes/color.png", "title": "多彩" },
-    ];
+    // 目前的主题名字
+    const [currTheme, setCurrTheme] = useState("");
+    const [themes, setThemes] = useState([]);
 
     /* ---------- LIFETIME ---------- */
     useEffect(() => {
+        const getThemes = () => {
+            request({
+                url: `/theme/all`,
+                method: "GET",
+            }).then(res => {
+                console.log("get themes success", res.data);
+                setThemes(res.data);
+            }).catch(err => {
+                console.log("get themes failed", err);
+            })
+        }
+
         const getMe = () => {
             request({
                 url: "/user/me",
                 method: "GET",
                 needToken: true,
             }).then(res => {
-
-                console.log("get me successfully", res.data);
-
                 // 获取并设置用户设置信息
                 getSetting(res.data.user_name);
+
                 // 获取用户链接相关信息
-                getLinks(res.data.user_name);;
+                getLinks(res.data.user_name);
 
             }).catch(err => {
                 console.log("get me failed", err);
             })
         }
         getMe();
+        getThemes();
     }, [])
 
+  useEffect(() =>{
+    console.log("currTheme changed", currTheme);
+    if (currTheme) {
+        getTheme(currTheme);
+    }
+  }, [currTheme])
+ 
+    const getTheme = (themeName) => {
+        request({
+            url: `/theme/${themeName}`,
+            method: "GET",
+        }).then(res => {
+            console.log("fetch theme ->", res.data);
+            setTheme(res.data);
+        }).catch(err => {
+            console.log("get theme failed", err);
+        })
+    }
 
     const getSetting = (username) => {
         request({
             url: `/setting/${username}`,
             method: "GET",
         }).then(res => {
-            console.log("get user successfully", res.data);
+            setCurrTheme(res.data.theme);
             setSetting(res.data);
+            getTheme(res.data.theme);
             // 获取并设置用户信息
         }).catch(err => {
             console.log("get user failed", err);
@@ -77,10 +102,10 @@ export default function AdminSkin() {
     return (
         <div className="skin-root">
             <div className="skin-main admin-left">
-                <h2>主题列表</h2>
+                <h3>主题列表</h3>
                 <div className="skin-box">
                     <div className="skin-wraper">
-                        <SkinList themes={themes}></SkinList>
+                        <SkinList themes={themes} currTheme={currTheme} setCurrTheme={setCurrTheme}></SkinList>
                     </div>
                 </div>
             </div>
@@ -94,24 +119,45 @@ export default function AdminSkin() {
 }
 
 function SkinList(props) {
-    const { themes } = props;
+    const { themes, currTheme, setCurrTheme } = props;
     return (
         <div className="skin-list">
             {themes.map((theme, index) => {
-                return <SkinDetail key={index} {...theme}></SkinDetail>
+                return <SkinDetail key={index} {...theme} setCurrTheme={setCurrTheme} currTheme={currTheme}></SkinDetail>
             })}
         </div>
     )
 }
 
+
+const Thumb = styled.div`
+    transition: all 0.25s cubic-bezier(0,0,.2,1);
+    border-radius: 25px;
+    height: 100%;
+    padding: ${(props) => props.isCurrent ? '3': '0'}px;
+    border: ${(props) => props.isCurrent? '2': '1'}px solid rgb(235 238 241);
+`;
+
+const ThumbImg = styled.img`
+    width: 100%;
+    height: 100%;
+    opacity: .9;
+    border-radius: 25px;
+`;
+
+
 function SkinDetail(props) {
-    const { thumb, title } = props;
+    const { thumb, title, name, currTheme, setCurrTheme} = props;
+
+    const changeCurrTheme = () => {
+        setCurrTheme(name);
+    }
     return (
-        <div className="skin-detail">
+        <div className="skin-detail" onClick={changeCurrTheme}>
             <div className="detail-box">
-                <div className="thumb">
-                    <img src={thumb} alt="" />
-                </div>
+                <Thumb isCurrent={currTheme===name}>
+                    <ThumbImg src={thumb}></ThumbImg>
+                </Thumb>
             </div>
             <div className="title">{title}</div>
         </div>

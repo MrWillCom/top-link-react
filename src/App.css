@@ -10,7 +10,6 @@
 html,body {
   margin: 0px;
   padding: 0px;
-  overflow-y: hidden;
 }
 
 /*
@@ -63,7 +62,7 @@ iframe {
 
 
 ::-webkit-scrollbar {
-  width: 16px
+  width: 0px
 }
 
 ::-webkit-scrollbar-thumb {

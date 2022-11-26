@@ -149,7 +149,23 @@ export default function ControlCard(props) {
         })
     }
 
+    const handleIconRemove = () => {
+        request({
+            url: "/upload/icon",
+            method: "DELETE",
+            needToken: true,
+            data: {data: link.thumb},
+        }).then(res=>{
+            console.log(res)
+        })
 
+        let newLink = { ...link };
+        newLink.thumb = ""
+        setLink(newLink);
+        // 关闭弹出层与编辑组件
+        setHeight(0);
+        setIsOverlayShow(false);
+    }
 
     return (
         <div className="link-control-item-box">
@@ -187,12 +203,15 @@ export default function ControlCard(props) {
                     </div>
 
                     <div className="editor-ops">
+                        <div className="editor-enter editor-button" onClick={handleIconRemove}>
+                            移除当前
+                        </div>
 
                         <div className="editor-upload editor-button">
                             上传图片
                             <input name="newImage" type="file" onChange={handleNewImage} />
                         </div>
-
+                        
                         <div className="editor-enter editor-button" onClick={handleIconResult}>
                             确定
                         </div>
@@ -250,9 +269,10 @@ export default function ControlCard(props) {
                     <AnimateHeight id="exam" duration={500} height={height}>
                         <SwitchExtraItem
                             extraId={extraId} setExtraId={setExtraId}
-                            lid={link.lid} deleteLink={deleteLink}
+                            link={link} deleteLink={deleteLink}
                             setHeight={setHeight} height={height}
                             setIsOverlayShow={setIsOverlayShow}
+
                         ></SwitchExtraItem>
                     </AnimateHeight>
                 </div>
@@ -275,9 +295,26 @@ function SwitchExtraItem(props) {
 }
 
 // extraId = 1, 删除链接组件
-export function ExtraControlDelete({ deleteLink, lid, setHeight, height }) {
+export function ExtraControlDelete({ deleteLink, link, setHeight, height }) {
     const handleClickDelete = () => {
-        deleteLink(lid);
+        deleteLink(link.lid);
+        request({
+            url: '/links/',
+            method: 'DELETE',
+            needToken: true,
+            data: {data: link.lid}
+        }).then(res => {
+            console.log("删除卡片", res)
+        })
+        request({
+            url: "/upload/icon",
+            method: "DELETE",
+            needToken: true,
+            data: {data: link.thumb},
+        }).then(res=>{
+            console.log("删除缩略图", res)
+        })
+
     }
     const handleClickCancle = () => {
         setHeight(0);

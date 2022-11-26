@@ -11,14 +11,12 @@ import { debounceFunction } from "../utils/utils";
 
 export default function AdminLink() {
 
-    const theme = {
-        textColor: "#fff",
-    };
-    
+
     /* ----------  STATE ---------- */
-    const [user, setUser] = useState({});
+    
     const [setting, setSetting] = useState({});
     const [links, setLinks] = useState([]);
+    const [theme, setTheme] = useState({});
     const [isSorting, setIsSorting] = useState(false); // 控制卡片是否在排序中
 
     /* ---------- LIFETIME ---------- */
@@ -31,7 +29,6 @@ export default function AdminLink() {
             }).then(res => {
 
                 console.log("get me successfully", res.data);
-                setUser(res.data);
                 // 获取并设置用户设置信息
                 getSetting(res.data.user_name);
                 // 获取用户链接相关信息
@@ -87,11 +84,23 @@ export default function AdminLink() {
             url: `/setting/${username}`,
             method: "GET",
         }).then(res => {
-            console.log("get user successfully", res.data);
             setSetting(res.data);
+            getTheme(res.data.theme);
             // 获取并设置用户信息
         }).catch(err => {
             console.log("get user failed", err);
+        })
+    }
+
+    const getTheme = (themeName) => {
+        request({
+            url: `/theme/${themeName}`,
+            method: "GET",
+        }).then(res => {
+            console.log("fetch theme ->", res.data);
+            setTheme(res.data);
+        }).catch(err => {
+            console.log("get theme failed", err);
         })
     }
 
@@ -124,7 +133,7 @@ export default function AdminLink() {
     /* 添加一个新的链接 */
     const addNewLink = () => {
         let newLink = {
-            thumb: "/images/thumb.jpg",
+            thumb: "",
             title: "编辑标题与链接",
             url: "https://the.top/",
             lid: uuid(),

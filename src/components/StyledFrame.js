@@ -13,8 +13,7 @@ export default withTheme((props) => {
   } = props
 
   return (
-    <Frame
-     initialContent='<!DOCTYPE html><html><head></head><style>body{margin:0px;}</style><body><div id="mountHere"></div></body></html>' 
+    <Frame 
       ref={refs}
       style={{
         ...style

@@ -22,7 +22,7 @@
 }
 
 .previewWrap {
-    width: 352px;
+    width: 338px;
     height: 724px;
     padding: 16px;
     display: block;
@@ -31,7 +31,7 @@
     top: 50%;
     left: 50%;
     transform-origin: top left;
-    transform: scale(0.778551) translateX(-50%) translateY(-50%) translate3d(0px, 0px, 0px);
+    transform: scale(0.81) translateX(-50%) translateY(-50%) translate3d(0px, 0px, 0px);
 }
 
 .previewWrap ::after {

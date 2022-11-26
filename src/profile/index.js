@@ -10,13 +10,24 @@ export default function Profile() {
 
     let [setting, setSetting] = React.useState({});
     let [links, setLinks] = React.useState([]);
-    const theme = {
-        textColor: "#FFF",
-    };
+    const [theme, setTheme] = React.useState({});
+
     React.useEffect(() => {
         getSetting(params.username);
         getLinks(params.username);
     }, [params.username]);
+
+    const getTheme = (themeName) => {
+        request({
+            url: `/theme/${themeName}`,
+            method: "GET",
+        }).then(res => {
+            console.log("get theme success", res.data);
+            setTheme(res.data);
+        }).catch(err => {
+            console.log("get theme failed", err);
+        })
+    }
 
     const getSetting = (username) => {
         request({
@@ -25,6 +36,7 @@ export default function Profile() {
         }).then(res => {
             console.log("get user successfully", res.data);
             setSetting(res.data);
+            getTheme(res.data.theme);
             // 获取并设置用户信息
         }).catch(err => {
             console.log("get user failed", err);
