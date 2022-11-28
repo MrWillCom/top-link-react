@@ -14,6 +14,11 @@ export default withTheme((props) => {
 
   return (
     <Frame 
+    initialContent='<!DOCTYPE html><html><head></head><style> body {
+      font-family: Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
+        -webkit-text-size-adjust: 100%;
+    }</style><body><div id="mountHere"></div></body></html>'
+    mountTarget='#mountHere'
       ref={refs}
       style={{
         ...style
