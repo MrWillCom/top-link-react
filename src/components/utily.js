@@ -28,8 +28,8 @@ export default function ImageEditor(props) {
             rotate: 0,
             borderRadius: 0,
             preview: null,
-            width: 100,
-            height: 100,
+            width: 200,
+            height: 200,
     });
 
 
@@ -82,6 +82,7 @@ export default function ImageEditor(props) {
                 <div className="editor-box">
                     <div className="editor-canvas">
                         <ReactAvatarEditor
+                            crossOrigin="anonymous"
                             ref={setEitorRef}
                             scale={parseFloat(iconObj.scale)}
                             width={iconObj.width}

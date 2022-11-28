@@ -10,10 +10,14 @@
 }
 
 .editor-canvas {
-    padding: 20px;
     width: 40%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.editor-canvas canvas {
+    transform: scale(0.75);
 }
 
 .editor-ops {
@@ -77,8 +81,8 @@
 }
 
 .modal {
-    width: 630px;
-    height: 390px;
+    width: 680px;
+    height: auto;
     background: white;
     color: white;
     z-index: 10;

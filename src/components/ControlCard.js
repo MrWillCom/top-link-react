@@ -101,7 +101,7 @@ export default function ControlCard(props) {
 
     const handleIconResult = (imageData) => {
         request({
-            url: "/upload/icon",
+            url: "/upload/images/thumb",
             method: "POST",
             needToken: true,
             data: {image_b64: imageData, origin: link.thumb}, 
@@ -120,7 +120,7 @@ export default function ControlCard(props) {
 
     const handleIconRemove = () => {
         request({
-            url: "/upload/icon",
+            url: "/upload/thumb",
             method: "DELETE",
             needToken: true,
             data: {data: link.thumb},

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import SiderBar from "./siderbar";
 import { Button } from "../components/button";
 import ImageEditor from "../components/utily";
+import { debounceFunction } from "../utils/utils";
 
 
 export default function AdminSetting() {
@@ -80,8 +81,33 @@ export default function AdminSetting() {
         // 初始化加载
         initMe();
     }, [])
+    
+    
+    // 同步设置
+    const syncSetting = React.useCallback(
+        debounceFunction((data) => {
+            request({
+                url: "/setting/base",
+                method: "PATCH",
+                needToken: true,
+                data : {page_title: data.page_title, page_bio: data.page_bio, profile_picture: data.profile_picture},
+            })
+            .then(res => {
+                //console.log("sync setting success", res);
+            }).catch(err => {
+                console.log("sync setting failed", err);
+            })
+        }, 300), []);
 
- 
+    
+    // 监听 setting 变化
+    React.useEffect(() => {
+        if (Object.keys(setting).length > 0) {
+            syncSetting(setting);
+        }
+    }, [setting])
+
+    
     const handleChangeTitle = (value) => {
         if (value.length <= 28 && value.length > 0) {
             setSetting({
@@ -99,17 +125,33 @@ export default function AdminSetting() {
             })
         }
     }
+
     const handleChangeAvatar = () => {
         setIsAvatarEditting(true);
     }
 
     const handleAvatarResult = (result) => {
-
+        request({
+            url: "/upload/images/avatar",
+            method: "POST",
+            needToken: true,
+            data: {image_b64: result, origin: setting.profile_picture},
+        }).then(res => {
+            console.log(res.data);
+            setSetting({
+                ...setting,
+                profile_picture: `/images/avatar/${res.data.file_name}`
+            })
+            setIsAvatarEditting(false);
+        }).catch(err => {
+            console.log("upload avatar failed", err);
+        })
     }
     
     const handleAvatarRemove = () => {
 
     }
+
     return (
         <div className="setting-root">
             <ImageEditor 
