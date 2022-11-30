@@ -238,7 +238,7 @@ export function ExtraControlDelete({ deleteLink, link, setHeight, height }) {
             console.log("删除卡片", res)
         })
         request({
-            url: "/upload/icon",
+            url: "/upload/thumb",
             method: "DELETE",
             needToken: true,
             data: {data: link.thumb},

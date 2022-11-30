@@ -2,7 +2,7 @@ import "./setting.css";
 import { useState, useEffect } from "react";
 import React from 'react';
 import request from "../utils/request";
-import styled from "styled-components";
+import { InputNormal } from "../components/utily";
 import SiderBar from "./siderbar";
 import { Button } from "../components/button";
 import ImageEditor from "../components/utily";
@@ -177,8 +177,8 @@ export default function AdminSetting() {
                             </div>
                         </div>
                         <div className="setting-info">
-                            <PrifileEdit title="用户名" content={setting.page_title} maxLength={28} onChange={handleChangeTitle}/>
-                            <PrifileEdit title="简介" content={setting.page_bio} maxLength={80} onChange={handleChangeBio}/>
+                            <InputNormal title="用户名" content={setting.page_title} maxLength={28} onChange={handleChangeTitle}/>
+                            <InputNormal title="简介" content={setting.page_bio} maxLength={80} onChange={handleChangeBio}/>
                             <div className="bio"></div>
                         </div>
                     </div>
@@ -190,74 +190,5 @@ export default function AdminSetting() {
             </div>
 
         </div>
-    )
-}
-
-
-
-const InputBox = styled.div`
-    width: 100%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid ${props => props.isOverLength ? 'red': props.editting ? 'black': 'white'}; 
-    margin-bottom: 10px;
-    background-color: var(--gray-bg);
-    transition: all 0.3s cubic-bezier(0,0,.2,1);
-    &:hover {
-        border: 2px solid ${props => props.isOverLength ? 'red': props.editting ? 'black': '#e3e3e3'}; 
-    }
-`;
-
-
-const InputTitle = styled.div`
-    padding: 10px 0 0px 0;
-    margin-left: 10px;
-    color: rgb(103 107 95);
-`;
-
-const Input = styled.input`
-    background-color: var(--gray-bg);
-    width: 90%;
-    margin-left: 10px;
-    border: none;
-    padding: 5px 0px 10px 0px;
-    font-size: 16px;
-    outline: none;
-`;
-
-
-function PrifileEdit(props) {
-    const [content, setContent] = useState(props.content);
-    const [isEditting, setIsEditting] = useState(false);
-    const [isOverLength, setIsOverLength] = useState(false);
-
-    React.useEffect(() => {
-        setContent(props.content);
-    }, [props.content])
-
-    const handleChange = (e) => {
-        setContent(e.target.value);
-        if (e.target.value.length > props.maxLength) {
-            setIsOverLength(true);
-        } else {
-            setIsOverLength(false);
-        }
-        props.onChange(e.target.value);
-    }
-
-    const handleBlur = () => {
-        setIsEditting(false);
-    }
-    
-    const handleFoucs = () => {
-        setIsEditting(true);
-    }
-
-    return (
-        <InputBox editting={isEditting} isOverLength={isOverLength}>
-            <InputTitle>{props.title}</InputTitle>
-            <Input type="text" value={content || ''} onChange={handleChange} onFocus={handleFoucs} onBlur={handleBlur} />
-        </InputBox>
     )
 }

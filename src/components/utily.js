@@ -2,6 +2,7 @@ import "./utily.css";
 import React from "react";
 import ReactAvatarEditor from "react-avatar-editor";
 import { CloseSvg } from "./Svg";
+import styled from "styled-components";
 
 export default function ImageEditor(props) {
     /*
@@ -15,21 +16,21 @@ export default function ImageEditor(props) {
         - handleIconResult: 点击确认图片的回调函数
     */
 
-    const {title, setVisible, hasRemove, imageObject, handleRemove, handleResult} = props;
+    const { title, setVisible, hasRemove, imageObject, handleRemove, handleResult } = props;
     const [isOverlayShow, setIsOverlayShow] = React.useState(false);
     var editor = null;
 
     // 图标编辑插件
     const [iconObj, setIconObj] = React.useState({
-            image: imageObject,
-            allowZoomOut: false,
-            position: { x: 0.5, y: 0.5 },
-            scale: 1,
-            rotate: 0,
-            borderRadius: 0,
-            preview: null,
-            width: 200,
-            height: 200,
+        image: imageObject,
+        allowZoomOut: false,
+        position: { x: 0.5, y: 0.5 },
+        scale: 1,
+        rotate: 0,
+        borderRadius: 0,
+        preview: null,
+        width: 200,
+        height: 200,
     });
 
 
@@ -51,7 +52,7 @@ export default function ImageEditor(props) {
     React.useEffect(() => {
         setVisible(isOverlayShow);
     }, [isOverlayShow]);
-    
+
     React.useEffect(() => {
         setIconObj({
             ...iconObj,
@@ -60,8 +61,8 @@ export default function ImageEditor(props) {
     }, [props.imageObject]);
 
     const handleNewImage = e => {
-        if(e.target.files) {
-            setIconObj({ ...iconObj, image: e.target.files[0]});
+        if (e.target.files) {
+            setIconObj({ ...iconObj, image: e.target.files[0] });
         }
     }
 
@@ -135,7 +136,7 @@ export default function ImageEditor(props) {
 
 
 
-export function Overlay({ children, setIsOverlayShow, title}) {
+export function Overlay({ children, setIsOverlayShow, title }) {
     /*
     props:
         - title: 弹出框的标题
@@ -143,24 +144,197 @@ export function Overlay({ children, setIsOverlayShow, title}) {
         - children: 弹出框的内容
     */
     return (
-    <>
-      <div className="darkBG" onClick={() => {setIsOverlayShow(false)}} 
-        />
-      <div className="centered">
-        <div className="modal">
-        {/* 头部 */}
-          <div className="modalHeader">
-            <h5 className="heading">{title}</h5>
-          </div>
-          <div className="closeBtn" onClick={()=> setIsOverlayShow(false)}>
-            <CloseSvg size={28}></CloseSvg>
-          </div>
-            {/* 内容 */}
-          <div className="modalContent">
-           {children} 
-          </div>
-        </div>
-      </div>
-    </>
-  )
+        <>
+            <div className="darkBG" onClick={() => { setIsOverlayShow(false) }}
+            />
+            <div className="centered">
+                <div className="modal">
+                    {/* 头部 */}
+                    <div className="modalHeader">
+                        <h5 className="heading">{title}</h5>
+                    </div>
+                    <div className="closeBtn" onClick={() => setIsOverlayShow(false)}>
+                        <CloseSvg size={28}></CloseSvg>
+                    </div>
+                    {/* 内容 */}
+                    <div className="modalContent">
+                        {children}
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+const InputWithLableMain = styled.div`
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0,0,.2,1);
+    border: 2px solid ${props => props.editting ? 'black' : "white"};
+    padding: 1px 2px 2px 1px;
+`;
+
+const InputWithLableWraper = styled.div`
+    background-color: #fff0;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: ;
+    display: flex;
+    line-height: 48px;
+    border-color: ${props => props.editting ? 'white': props.color ? props.color : "white"};
+    &:hover {
+        border: 2px solid ${props => props.editting ? 
+            ( props.color === "white" ? 'white': props.color):
+            ( props.color === "white" ? '#e3e3e3': props.color)};
+        };
+    }
+`;
+
+const InputWithLableTag = styled.label`
+    display: flex;
+    color: rbg(103 107 96);
+    line-height: 0;
+    font-size: 14px;
+    padding-left: 1rem;
+    background-color: rgb(239 240 235);
+    align-items: center;
+    height: 3rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+
+`;
+
+
+const InputWithLableBox = styled.div`
+    position: relative;
+    flex-grow: 1;
+`;
+
+const WithLableInput = styled.input`
+    transition: all 0.3s cubic-bezier(0,0,.2,1);
+    outline: 2px solid #0000!important;
+    border: none;
+    outline-offset: 2px!important;
+    color: #000;
+    line-height: 48px;
+    font-size: 14px;
+    border-radius: 0 .5rem .5rem 0;
+    height: 3rem;
+    width: 100%;
+    display: block;
+    padding-left: 0.25rem;
+    padding-right: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgb(239 240 236)
+`;
+
+export function InputWithLable(props) {
+    /*
+    :params
+        :title 标题
+        :content 编辑器内容
+        :onChange 改变内容的方法
+    */
+    const [content, setContent] = React.useState(props.content);
+    const [isEditting, setIsEditting] = React.useState(false);
+
+
+    React.useEffect(() => {
+        setContent(props.content);
+    }, [props.content])
+
+    const handleChange = (e) => {
+        setContent(e.target.value);
+        props.onChange(e.target.value);
+    }
+
+    const handleBlur = () => {
+        setIsEditting(false);
+    }
+
+    const handleFoucs = () => {
+        setIsEditting(true);
+    }
+    return (
+        <InputWithLableMain editting={isEditting}>
+            <InputWithLableWraper color={props.color} editting={isEditting}>
+                <InputWithLableTag>{props.title}</InputWithLableTag>
+                <InputWithLableBox>
+                    <WithLableInput type="text" placeholder={props.placeholder} value={content} onFocus={handleFoucs} onBlur={handleBlur} onChange={handleChange}></WithLableInput>
+                </InputWithLableBox>
+            </InputWithLableWraper>
+        </InputWithLableMain>
+    )
+}
+
+
+
+
+const InputBox = styled.div`
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid ${props => props.isOverLength ? 'red': props.editting ? 'black': 'white'}; 
+    margin-bottom: 10px;
+    background-color: var(--gray-bg);
+    transition: all 0.3s cubic-bezier(0,0,.2,1);
+    &:hover {
+        border: 2px solid ${props => props.isOverLength ? 'red': props.editting ? 'black': '#e3e3e3'}; 
+    }
+`;
+
+
+const InputTitle = styled.div`
+    padding: 10px 0 0px 0;
+    margin-left: 10px;
+    color: rgb(103 107 95);
+`;
+
+const Input = styled.input`
+    background-color: var(--gray-bg);
+    width: 90%;
+    margin-left: 10px;
+    border: none;
+    padding: 5px 0px 10px 0px;
+    font-size: 16px;
+    outline: none;
+`;
+
+
+export function InputNormal(props) {
+    const [content, setContent] = React.useState(props.content);
+    const [isEditting, setIsEditting] = React.useState(false);
+    const [isOverLength, setIsOverLength] = React.useState(false);
+
+    React.useEffect(() => {
+        setContent(props.content);
+    }, [props.content])
+
+    const handleChange = (e) => {
+        setContent(e.target.value);
+        if (e.target.value.length > props.maxLength) {
+            setIsOverLength(true);
+        } else {
+            setIsOverLength(false);
+        }
+        props.onChange(e.target.value);
+    }
+
+    const handleBlur = () => {
+        setIsEditting(false);
+    }
+    
+    const handleFoucs = () => {
+        setIsEditting(true);
+    }
+
+    return (
+        <InputBox editting={isEditting} isOverLength={isOverLength}>
+            <InputTitle>{props.title}</InputTitle>
+            <Input type="text" value={content || ''} onChange={handleChange} onFocus={handleFoucs} onBlur={handleBlur} />
+        </InputBox>
+    )
 }
