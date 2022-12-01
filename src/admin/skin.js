@@ -75,7 +75,7 @@ export default function AdminSkin() {
 
     const getSetting = (username) => {
         request({
-            url: `/setting/${username}`,
+            url: `/setting/user/${username}`,
             method: "GET",
         }).then(res => {
             setCurrTheme(res.data.theme);

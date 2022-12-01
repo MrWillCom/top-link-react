@@ -52,7 +52,7 @@ export default function AdminSetting() {
     
         const getSetting = (username) => {
             request({
-                url: `/setting/${username}`,
+                url: `/setting/user/${username}`,
                 method: "GET",
             }).then(res => {
                 console.log(res.data)

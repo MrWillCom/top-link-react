@@ -31,7 +31,7 @@ export default function Profile() {
 
     const getSetting = (username) => {
         request({
-            url: `/setting/${username}`,
+            url: `/setting/user/${username}`,
             method: "GET",
         }).then(res => {
             console.log("get user successfully", res.data);

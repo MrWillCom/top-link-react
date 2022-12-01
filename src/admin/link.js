@@ -81,7 +81,7 @@ export default function AdminLink() {
 
     const getSetting = (username) => {
         request({
-            url: `/setting/${username}`,
+            url: `/setting/user/${username}`,
             method: "GET",
         }).then(res => {
             setSetting(res.data);
