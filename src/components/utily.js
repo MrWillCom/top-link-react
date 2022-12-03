@@ -49,17 +49,22 @@ export default function ImageEditor(props) {
         setIsOverlayShow(props.visible);
     }, [props.visible]);
 
+    
     React.useEffect(() => {
         setVisible(isOverlayShow);
+        // eslint-disable-next-line
     }, [isOverlayShow]);
 
+    //eslint-disable
     React.useEffect(() => {
         setIconObj({
             ...iconObj,
             image: imageObject,
         })
+        //eslint-disable-next-line
     }, [props.imageObject]);
 
+    //eslint-disable-next-line
     const handleNewImage = e => {
         if (e.target.files) {
             setIconObj({ ...iconObj, image: e.target.files[0] });
@@ -240,7 +245,6 @@ export function InputWithLable(props) {
     const [content, setContent] = React.useState(props.content);
     const [isEditting, setIsEditting] = React.useState(false);
 
-
     React.useEffect(() => {
         setContent(props.content);
     }, [props.content])
@@ -262,7 +266,7 @@ export function InputWithLable(props) {
             <InputWithLableWraper color={props.color} editting={isEditting}>
                 <InputWithLableTag>{props.title}</InputWithLableTag>
                 <InputWithLableBox>
-                    <WithLableInput type="text" placeholder={props.placeholder} value={content} onFocus={handleFoucs} onBlur={handleBlur} onChange={handleChange}></WithLableInput>
+                    <WithLableInput type={props.type ? props.type : "text"} placeholder={props.placeholder} value={content} onFocus={handleFoucs} onBlur={handleBlur} onChange={handleChange}></WithLableInput>
                 </InputWithLableBox>
             </InputWithLableWraper>
         </InputWithLableMain>

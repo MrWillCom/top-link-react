@@ -1,0 +1,28 @@
+.login-main {
+  width: 100%;
+}
+
+.login-wraper {
+  padding: 30px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+  position: relative;
+}
+
+.login-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-title {
+  padding-left: 4px;
+  font-weight: 600;
+  font-size: 20px;
+  padding-bottom: 2rem;
+}
+
+.form-item {
+  margin-bottom: 10px;
+}

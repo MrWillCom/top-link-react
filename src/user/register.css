@@ -35,3 +35,36 @@
     font-weight: 600;
     font-size: 30px;
 }
+
+.register-main .field-content {
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fit,minmax(80px,1fr));
+    gap: 1rem;
+    padding-bottom: 25px;
+}
+
+.register-main .field-item {
+    cursor: pointer;
+    text-align: center;
+    padding: 3px 0px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+.register-main .field-item:hover {
+    background-color: #e3e3e3;
+    color: rgb(25, 17, 17);
+}
+
+.register-main .field-item.active-field {
+    border: 1px solid white;
+    background-color: #0071e3;
+    color: white;
+}
+
+.register-main .field-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 500;
+}

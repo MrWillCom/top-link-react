@@ -68,17 +68,6 @@ export default function AdminLink() {
         []
     );
 
-    const login = () => {
-        request({
-            url: "/user/login",
-            method: "POST",
-            data: { user_name: "austin", password: "test" }
-        }).then((res) => {
-            setToken(res.data.access_token);
-            console.log("login successfully, token: ", res.data.access_token);
-        })
-    }
-
     const getSetting = (username) => {
         request({
             url: `/setting/user/${username}`,

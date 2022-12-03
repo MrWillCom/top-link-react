@@ -177,7 +177,7 @@ export default function UserProfile(props) {
 
             <ProfielTitle>
               <UserName>{setting.page_title}</UserName>
-              <VerifySvg></VerifySvg>
+              {setting.verified && <VerifySvg />}
             </ProfielTitle>
 
             {setting.page_bio && <UserBio>{setting.page_bio}</UserBio>}

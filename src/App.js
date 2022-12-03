@@ -4,6 +4,7 @@ import Index from './index/index';
 import Admin from './admin';
 import About from './about';
 import Profile from './profile';
+import Login from './user/login';
 import Register from './user/register';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/admin/*" element={<Admin />} />
         <Route path='/register' element={<Register/>}></Route>
+        <Route path='/login' element={<Login/>}></Route>
         <Route path="/:username" element={<Profile />} />
         <Route path="*" element={<div>404</div>} />
       </Routes> 
