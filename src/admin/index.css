@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .nav-user .title {
@@ -53,4 +53,18 @@
     .nav-header, .admin-left {
         width: calc(100% - 570px);
     }
+}
+
+
+.logout-box .login-out {
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #676b5f;
+}
+
+.logout-box .login-out:hover {
+    border-radius: 10px;
+    background: var(--gray-bg);
 }

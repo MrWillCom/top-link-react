@@ -16,6 +16,9 @@
 .link-box {
     width: 100%;
     max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .link-tools {

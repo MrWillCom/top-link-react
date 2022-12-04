@@ -1,93 +1,11 @@
 import "./index.css";
 import React from "react";
+import Header from "../header";
 
 export default function Index() {
   return (
     <div className="index-main">
-      <div className="header">
-        <div className="header-wraper">
-          <div className="header-box">
-            <div className="header-main">
-              <div className="header-bar">
-                <div className="header-mobile">
-                  <a href="/">
-                    <div className="mobile-logo">THE.TOP</div>
-                  </a>
-                  <div className="mobile-user">
-                    <div className="mobile-user-wraper">
-                    <div className="mobile-user-content">
-                    <div className="login-wraper user-box">
-                        <a href="/login" className="user-wraper">
-                           
-                          <div className="login-box user-box-mobile">
-                            <span className="login-text">登 录</span>
-                          </div>
-                        </a>
-                      </div>
-                      <div className="signup-wraper user-box">
-                        <a href="/signup" className="user-wraper">
-                          <div className="signup-box user-box-mobile">
-                            <span className="signup-text">免 费 注 册</span>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-
-                    </div>
-                  </div>
-                </div>
-                <div className="header-desktop">
-                  <div className="desktop-nav">
-                    <div className="desktop-nav-wraper">
-                      <a className="nav-logo" href="/">
-                        <div className="logo-mobile">THE.TOP</div>
-                        <div className="logo-desktop">THE.TOP LINK</div>
-                      </a>
-                      <div className="nav-item">
-                        <div className="item">
-                          <a className="item-box" href="/explore">
-                            <div className="item-wraper">
-                              <span className="item-text">探索</span>
-                            </div>
-                          </a>
-                        </div>
-                        <div className="item">
-                          <a className="item-box" href="/about">
-                            <div className="item-wraper">
-                              <span className="item-text">关于</span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="desktop-user">
-                    <div className="user-wraper">
-                      <div className="login-wraper user-box">
-                        <a href="/login" className="user-wraper">
-                          <div className="login-box">
-                            <span className="login-text">登 录</span>
-                          </div>
-                        </a>
-                      </div>
-                      <div className="signup-wraper user-box">
-                        <a href="/signup" className="user-wraper">
-                          <div className="signup-box">
-                            <span className="signup-text">免费注 册</span>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mobile-box"></div>
-            </div>
-          </div>
-        </div>
-        <div className="header-bottom"></div>
-      </div>
-
+      <Header />
       <div className="container">
         <div className="intro intro-1">
           <div className="intro-box">

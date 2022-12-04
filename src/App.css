@@ -96,3 +96,8 @@ iframe {
 .align-center {
   align-items: center;
 }
+
+.is-loading {
+  width: 38px;
+  height: 38px;
+}

@@ -1,11 +1,10 @@
 import "./link.css";
-import { MusicSvg, PictureSvg, PlusSvg } from "../components/Svg";
+import {  PlusSvg, LoadingSvg } from "../components/Svg";
 import ControlCard from "../components/ControlCard";
 import { useState, useEffect, useCallback } from "react";
 import { ReactSortable } from "react-sortablejs";
 import { v4 as uuid } from "uuid";
 import request from "../utils/request";
-import { setToken } from "../utils/request";
 import SiderBar from "./siderbar";
 import { debounceFunction } from "../utils/utils";
 
@@ -16,6 +15,7 @@ export default function AdminLink() {
     
     const [setting, setSetting] = useState({});
     const [links, setLinks] = useState([]);
+    const [hasLinks, setHasLinks] = useState(true);
     const [theme, setTheme] = useState({});
     const [isSorting, setIsSorting] = useState(false); // 控制卡片是否在排序中
 
@@ -39,6 +39,7 @@ export default function AdminLink() {
             })
         }
         getMe();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // 检测 links 发生的变化
@@ -47,6 +48,7 @@ export default function AdminLink() {
         if (links.length) {
             debounceSyncLinks(links)
         }
+        // eslint-disable-next-line
     }, [links])
 
     /* ---------- FUNCTION ---------- */
@@ -63,7 +65,9 @@ export default function AdminLink() {
         })
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const debounceSyncLinks = useCallback(
+        // eslint-disable-next-line
         debounceFunction((newLinks) => syncLinks(newLinks), 300),
         []
     );
@@ -103,6 +107,9 @@ export default function AdminLink() {
             cards.sort((a, b) => {
                 return a.position - b.position;
             })
+            if(cards.length===0){
+                setHasLinks(false);
+            }
             setLinks(cards);
         })
     }
@@ -167,26 +174,38 @@ export default function AdminLink() {
                             </button>
                         </div>
                     </div>
-
-                    <ReactSortable
-                        className="link-control-box" sort={true}
-                        animation={250} easing="cubic-bezier(1, 0, 0, 1)"
-                        dragClass="dragging"
-                        handle=".control-bar"
-                        onStart={() => {
-                            setIsSorting(true);
-                        }}
-                        onChange={() => {
-                            setIsSorting(true);
-                        }}
-                        onEnd={() => { }}
-                        list={links}
-                        setList={(updatedList) => updateOrder(updatedList)}
-                    >
-                        {links.map((item) => {
-                            return <ControlCard link={item} key={item.lid} updateLink={updateLink} deleteLink={deleteLink}></ControlCard>;
-                        })}
-                    </ReactSortable>
+                    {
+                        links.length > 0 ? (
+                            <ReactSortable
+                            className="link-control-box" sort={true}
+                            animation={250} easing="cubic-bezier(1, 0, 0, 1)"
+                            dragClass="dragging"
+                            handle=".control-bar"
+                            onStart={() => {
+                                setIsSorting(true);
+                            }}
+                            onChange={() => {
+                                setIsSorting(true);
+                            }}
+                            onEnd={() => { }}
+                            list={links}
+                            setList={(updatedList) => updateOrder(updatedList)}
+                        >
+                            {links.map((item) => {
+                                return <ControlCard link={item} key={item.lid} updateLink={updateLink} deleteLink={deleteLink}></ControlCard>;
+                            })}
+                        </ReactSortable>
+                        ): (
+                            hasLinks ? (
+                                <div className="is-loading">
+                                    <LoadingSvg></LoadingSvg>
+                                </div>
+                            ):(
+                                <></>
+                            )
+                        )
+                    }
+               
                 </div>
             </div>
 

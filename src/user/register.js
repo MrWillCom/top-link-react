@@ -55,7 +55,6 @@ export default function Register() {
       window.location.href = "/admin";
     }).catch(err=>{
       console.log(err)
-      window.location.href = "/register";
     })
 
   }

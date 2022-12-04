@@ -11,7 +11,6 @@ import { debounceFunction } from "../utils/utils";
 
 export default function AdminSetting() {
 
-
     /* ----------  STATE ---------- */
     const [theme, setTheme] = useState({});
     const [setting, setSetting] = useState({});
@@ -177,7 +176,7 @@ export default function AdminSetting() {
                             </div>
                         </div>
                         <div className="setting-info">
-                            <InputNormal title="用户名" content={setting.page_title} maxLength={28} onChange={handleChangeTitle}/>
+                            <InputNormal title="标题" content={setting.page_title} maxLength={28} onChange={handleChangeTitle}/>
                             <InputNormal title="简介" content={setting.page_bio} maxLength={80} onChange={handleChangeBio}/>
                             <div className="bio"></div>
                         </div>

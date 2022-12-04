@@ -19,11 +19,18 @@ export default function Admin() {
             }).then(res => {
                 setUsername(res.data.user_name);
             }).catch(err => {
+                window.location.replace("/login")
                 console.log("get me failed", err);
             })
         }
         initMe();
     }, []);
+
+    const handleLoginOut = () => {
+        window.localStorage.removeItem("token");
+        window.location.replace("/");
+    }
+    
     return (
         /* 公共的头部 */
         <div className="admin flex flex-direction-column">
@@ -37,8 +44,15 @@ export default function Admin() {
 
                 {/* 顶部的导航区的链接及分享 */}
                 <div className="nav-user admin-right">
-                    <div className="title">专属链接:</div>
-                    <a className="link" target="_blank" href={"/"+username}>{"https://the.top/"+username}</a>
+                   <div className="user-link">
+                    <div className="title">专属链接:
+                        <a className="link" target="_blank" href={"/"+username}>{"https://the.top/"+username}</a>
+                    </div>
+                  
+                   </div>
+                   <div className="logout-box" onClick={handleLoginOut}>
+                    <div className="login-out">退出登录</div>
+                   </div>
                 </div>
             </div>
 
