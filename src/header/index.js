@@ -1,8 +1,10 @@
 import "./index.css";
 import React from "react";
 import { getToken } from "../utils/request";
+import styled from "styled-components";
 
-export default function Header() {
+
+export default function Header(props) {
   const [hasToken, setHasToken] = React.useState(false);
 
   React.useEffect(()=>{
@@ -113,7 +115,18 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <div className="header-bottom"></div>
+      <HeaderBackground bgColor={props.bgColor}></HeaderBackground>
     </div>
   );
 }
+
+const HeaderBackground = styled.div`
+  min-width: 0px;
+  padding-bottom: 100px;
+  background-color: ${props => props.bgColor || "#000"};
+  height: 0px;
+
+  @media screen and (min-width: 320px) {
+    padding-bottom: 100px;
+  }
+`;

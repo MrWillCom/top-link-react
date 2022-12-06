@@ -15,6 +15,7 @@ export default function Profile() {
     React.useEffect(() => {
         getSetting(params.username);
         getLinks(params.username);
+        // eslint-disable-next-line
     }, [params.username]);
 
     const getTheme = (themeName) => {
@@ -39,6 +40,7 @@ export default function Profile() {
             getTheme(res.data.theme);
             // 获取并设置用户信息
         }).catch(err => {
+            window.location.href = "/404";
             console.log("get user failed", err);
         })
     }

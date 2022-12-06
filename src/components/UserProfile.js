@@ -92,6 +92,7 @@ const UserName = styled.div`
 `;
 
 const UserBio = styled.div`
+  text-align: center;
   margin-top: 3px;
   color: ${(props) => props.theme.bio_color};
   font-size: 16px;

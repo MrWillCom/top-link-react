@@ -126,7 +126,7 @@ export default function Index() {
         </div>
         <div className="footer">
           <div className="footer-wraper">
-            <p>&copy;THE.TOP 2019 - 2022</p>
+            <p>&copy;THE.TOP 2019 - 2022 | 邮箱: lookcos@gmail.com</p>
           </div>
         </div>
       </div>

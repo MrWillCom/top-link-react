@@ -249,7 +249,7 @@ function CompleteData(props) {
     <>
     <div className="register-title">完善资料</div>
     <div className="register-field">
-      <div className="field-title">1. 请选择最接近您的领域</div>
+      <div className="field-title">1. 请选择您的主体身份</div>
       <div className="field-content">
         {
           fields.map((field) => {
@@ -262,7 +262,7 @@ function CompleteData(props) {
         }
       </div>
 
-      <div className='field-title'> 2. 请选择您最感兴趣的内容</div>
+      <div className='field-title'> 2. 请选择您最擅长的领域 </div>
       <div className="field-content">
         {
           interests.map((item) => {

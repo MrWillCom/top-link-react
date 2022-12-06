@@ -42,8 +42,14 @@ export default function Login() {
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      login();
+    }
+  }
+  
   return (
-    <div className="login-main">
+    <div className="login-main" onKeyDown={handleKeyDown}>
       <div className="title-wraper">
         <div className="title">THE.TOP LINK</div>
       </div>

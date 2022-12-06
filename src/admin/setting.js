@@ -117,7 +117,7 @@ export default function AdminSetting() {
     }
 
     const handleChangeBio = (value) => {
-        if (value.length <= 80 && value.length > 0) {
+        if (value.length <= 80) {
             setSetting({
                 ...setting,
                 page_bio: value,
