@@ -2,6 +2,125 @@
 
 .explore-wraper {
   background-color: var(--gray-bg);
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   width: 100%;
+}
+
+@media screen and (min-width: 750px){
+  .explore-wraper {
+    padding-top: 40px;
+  }
+}
+
+.explore-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.explore-wraper .white-box {
+  width: 100%;
+  background-color: white;
+  border-radius: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.explore-wraper .filter-box {
+  padding-top: 25px;
+}
+
+.explore-wraper .field-content {
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: repeat(auto-fit,minmax(80px,1fr));
+  gap: 0.1rem;
+  padding-bottom: 25px;
+}
+
+.explore-wraper .field-item {
+  cursor: pointer;
+  transform: scale(.9);
+  text-align: center;
+  padding: 3px 0px;
+  border: 1px solid black;
+  border-radius: 25px;
+}
+
+.explore-wraper .field-item.active-field {
+  border: 1px solid white;
+  background-color: #0071e3;
+  color: white;
+}
+
+.explore-wraper .filter-title {
+  font-size: 16px;
+  padding: 2px 2px 10px 2px;
+}
+
+.explore-wraper .users {
+  margin-top: 20px;
+}
+
+
+.explore-wraper .user-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-wraper .user-box .user-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+}
+
+.explore-wraper .user-item .name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 10px;
+  width: 100px;
+}
+
+.explore-wraper .user-item .link {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.explore-wraper .user-item .name .title {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+
+.explore-wraper .user-item .name img {
+  width: 60px;
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 320px) {
+  .explore-wraper .user-item .name img {
+    width: 48px;
+  }
+}
+
+
+@media screen and (min-width: 750px) {
+  .explore-wraper .user-item .name img {
+    width: 60px;
+  }
+}
+
+
+.explore-wraper .user-box .bio p {
+  font-size: 18px;
+}
+
+.explore-wraper .no-more {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }

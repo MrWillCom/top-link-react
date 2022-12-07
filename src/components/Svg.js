@@ -149,18 +149,32 @@ export function PlusSvg(props) {
   )
 }
 
+export function RightSvg(props) {
+  const [size, setSize] = useState("24");
+  useEffect(() => {
+    if (props.size) {
+      setSize(props.size);
+    }
+  }, [props.size]); 
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg"  width={size} height={size} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <polyline points="9 6 15 12 9 18" />
+    </svg>
+  )
+}
 
 export function LoadingSvg(props) {
   const [fill, setFill] = useState("#8129d9");
 
-  useEffect(()=>{
-    if(props.fill){
+  useEffect(() => {
+    if (props.fill) {
       setFill(props.fill);
     }
   }, props.fill)
 
   return (
-    <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"
+    <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
       viewBox="0 0 100 100" enableBackground="new 0 0 0 0" strokeWidth="1.2">
       <path fill={fill} d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
         <animateTransform

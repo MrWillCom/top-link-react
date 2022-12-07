@@ -3,6 +3,14 @@ import React from "react";
 import Header from "../header";
 
 export default function Index() {
+  const redirectToRegister = () => {
+    window.location.href = "/register"
+  }
+
+  const redirectToExplore = () => {
+    window.location.href = "/explore"
+  }
+
   return (
     <div className="index-main">
       <Header />
@@ -66,7 +74,7 @@ export default function Index() {
                               </div>
                             </div>
                           </div>
-                          <div className="text-button-common">
+                          <div className="text-button-common" onClick={redirectToRegister}>
                             <button>免费注册</button>
                           </div>
                         </div>
@@ -105,7 +113,7 @@ export default function Index() {
                               </div>
                             </div>
                           </div>
-                          <div className="text-button-common">
+                          <div className="text-button-common" onClick={redirectToExplore}>
                             <button>开始探索</button>
                           </div>
                         </div>
