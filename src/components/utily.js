@@ -2,6 +2,7 @@ import "./utily.css";
 import React from "react";
 import ReactAvatarEditor from "react-avatar-editor";
 import { CloseSvg } from "./Svg";
+import request from "../utils/request";
 import styled from "styled-components";
 
 export default function ImageEditor(props) {
@@ -18,6 +19,8 @@ export default function ImageEditor(props) {
 
     const { title, setVisible, hasRemove, imageObject, handleRemove, handleResult } = props;
     const [isOverlayShow, setIsOverlayShow] = React.useState(false);
+    // mode 0 是上传模式，模式2是选择模式
+    const [mode, setMode] = React.useState(0);
     var editor = null;
 
     // 图标编辑插件
@@ -82,11 +85,28 @@ export default function ImageEditor(props) {
 
     const setEitorRef = (ed) => editor = ed;
 
+
+    // 选完之后，将图片的base64传给父组件
+    const handleModeChange = () => {
+        setMode(mode === 0 ? 1 : 0);
+    }
+    const [icons, setIcons] = React.useState([
+    ]);
+
+    React.useEffect(() =>{
+        request({
+            url: "/upload/icon"
+        }).then(res=>{
+            setIcons(res.data)
+        })
+    }, [])
+
     return (
         <>
             {isOverlayShow && <Overlay setIsOverlayShow={setIsOverlayShow} title={title}>
                 <div className="editor-box">
-                    <div className="editor-canvas">
+
+                    {mode === 0 && <> <div className="editor-canvas">
                         <ReactAvatarEditor
                             crossOrigin="anonymous"
                             ref={setEitorRef}
@@ -119,10 +139,9 @@ export default function ImageEditor(props) {
                     </div>
 
                     <div className="editor-ops">
-                        <div className="editor-button editor-select">
+                        <div className="editor-button editor-select" onClick={handleModeChange}>
                             从图标库选择
                         </div>
-
 
                         {hasRemove && <div className="editor-enter editor-button" onClick={handleImageRemove}>
                             移除当前
@@ -136,7 +155,21 @@ export default function ImageEditor(props) {
                         <div className="editor-enter editor-button" onClick={handleImageResult}>
                             确定
                         </div>
-                    </div>
+                    </div></>}
+
+                    {mode === 1 && <div className="select-box">
+                        {icons.map((item) => {
+                            return <div className="select-item" key={item.id}>
+                                <img src={item.url} alt={item.name}
+                                    onClick={() => {
+                                        setIconObj({ ...iconObj, image: item.url });
+                                        setMode(0);
+                                    }
+                                    }
+                                />
+                            </div>
+                        })}
+                        </div>}
                 </div>
             </Overlay>}
         </>

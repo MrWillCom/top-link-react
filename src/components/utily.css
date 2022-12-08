@@ -44,6 +44,21 @@
     transition: all .3s;
 }
 
+.editor-box .select-item  {
+    cursor: pointer;
+}
+
+.editor-box .select-item img {
+    width: 48px;
+    border-radius: 25%;
+}
+
+.editor-box .select-box {
+    width: 100%;
+    display: inline-grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 1rem;
+}
 
 .editor-button.editor-select {
     background-color: black;
