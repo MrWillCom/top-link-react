@@ -29,8 +29,8 @@
     align-items: center;
 }
 
-.editor-button {
-    margin: 20px;
+.editor-ops .editor-button {
+    margin: 10px;
     cursor: pointer;
     color: white;
     width: 100%;
@@ -42,6 +42,11 @@
     display: flex;
     justify-content: center;
     transition: all .3s;
+}
+
+
+.editor-button.editor-select {
+    background-color: black;
 }
 
 .editor-button:hover {
@@ -81,7 +86,7 @@
 }
 
 .modal {
-    width: 680px;
+    width: 780px;
     height: auto;
     background: white;
     color: white;

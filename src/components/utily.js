@@ -49,7 +49,7 @@ export default function ImageEditor(props) {
         setIsOverlayShow(props.visible);
     }, [props.visible]);
 
-    
+
     React.useEffect(() => {
         setVisible(isOverlayShow);
         // eslint-disable-next-line
@@ -119,6 +119,11 @@ export default function ImageEditor(props) {
                     </div>
 
                     <div className="editor-ops">
+                        <div className="editor-button editor-select">
+                            从图标库选择
+                        </div>
+
+
                         {hasRemove && <div className="editor-enter editor-button" onClick={handleImageRemove}>
                             移除当前
                         </div>}
@@ -188,11 +193,11 @@ const InputWithLableWraper = styled.div`
     border-color: ;
     display: flex;
     line-height: 48px;
-    border-color: ${props => props.editting ? 'white': props.color ? props.color : "white"};
+    border-color: ${props => props.editting ? 'white' : props.color ? props.color : "white"};
     &:hover {
-        border: 2px solid ${props => props.editting ? 
-            ( props.color === "white" ? 'white': props.color):
-            ( props.color === "white" ? '#e3e3e3': props.color)};
+        border: 2px solid ${props => props.editting ?
+        (props.color === "white" ? 'white' : props.color) :
+        (props.color === "white" ? '#e3e3e3' : props.color)};
         };
     }
 `;
@@ -281,12 +286,12 @@ const InputBox = styled.div`
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    border: 2px solid ${props => props.isOverLength ? 'red': props.editting ? 'black': 'white'}; 
+    border: 2px solid ${props => props.isOverLength ? 'red' : props.editting ? 'black' : 'white'}; 
     margin-bottom: 10px;
     background-color: var(--gray-bg);
     transition: all 0.3s cubic-bezier(0,0,.2,1);
     &:hover {
-        border: 2px solid ${props => props.isOverLength ? 'red': props.editting ? 'black': '#e3e3e3'}; 
+        border: 2px solid ${props => props.isOverLength ? 'red' : props.editting ? 'black' : '#e3e3e3'}; 
     }
 `;
 
@@ -330,7 +335,7 @@ export function InputNormal(props) {
     const handleBlur = () => {
         setIsEditting(false);
     }
-    
+
     const handleFoucs = () => {
         setIsEditting(true);
     }

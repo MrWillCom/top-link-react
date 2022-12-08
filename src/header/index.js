@@ -36,7 +36,7 @@ export default function Header(props) {
   }
 
   return (
-    <div className="header">
+    <div className="header header-common">
       <div className="header-wraper">
         <div className="header-box">
           <div className="header-main">

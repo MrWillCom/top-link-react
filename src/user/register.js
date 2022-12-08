@@ -38,6 +38,7 @@ export default function Register() {
     }
   }, [username, email, password]);
 
+  
   const handleSubmit = () => {
     let formData = {
       user_name: username.value,
