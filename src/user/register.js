@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { InputWithLable } from '../components/utily';
 import { Button } from '../components/button';
@@ -23,6 +24,8 @@ export default function Register() {
   const [isStepOneOk, setIsStepOneOk] = React.useState(false);
   const [isStepTwoOk, setIsStepTwoOk] = React.useState(false);
   const [step, setStep] = React.useState(1);
+
+
 
   React.useEffect(()=>{
     if(fieldCode && interestCode){
@@ -57,7 +60,6 @@ export default function Register() {
     }).catch(err=>{
       console.log(err)
     })
-
   }
 
   return (
@@ -91,6 +93,15 @@ function RegisterBase(props) {
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  let params = useParams();
+
+  React.useEffect(()=>{
+    if (params.username) {
+      setUsername(params.username);
+      debounceCheckUserName(params.username);
+    }
+  }, [params.username])
 
   const [tipUsername, setTipUsername] = React.useState({
     color: "white",

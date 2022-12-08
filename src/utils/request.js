@@ -1,5 +1,6 @@
 export default async function request (param = {}) {
-    let baseUrl = "http://localhost/api/v1";
+    // let baseUrl = "http://localhost/api/v1";
+    let baseUrl = "/api/v1";
     let url = `${baseUrl}${param.url}`;
     let method = param.method || "GET";
     let data = param.data || {};

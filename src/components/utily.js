@@ -299,6 +299,7 @@ export function InputWithLable(props) {
     const handleFoucs = () => {
         setIsEditting(true);
     }
+    
     return (
         <InputWithLableMain editting={isEditting}>
             <InputWithLableWraper color={props.color} editting={isEditting}>

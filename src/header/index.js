@@ -81,13 +81,6 @@ export default function Header(props) {
                           </div>
                         </a>
                       </div>
-                      <div className="item">
-                        <a className="item-box" href="/about">
-                          <div className="item-wraper">
-                            <span className="item-text">关于</span>
-                          </div>
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </div>

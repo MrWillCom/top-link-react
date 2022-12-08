@@ -11,6 +11,16 @@ export default function Index() {
     window.location.href = "/explore"
   }
 
+  const [value, setValue] = React.useState("");
+
+  const changeValue = (e) => {
+    setValue(e.target.value);
+  }
+
+  const handleRegister = () => {
+    window.open("/register/" + value);
+  }
+
   return (
     <div className="index-main">
       <Header />
@@ -34,7 +44,24 @@ export default function Index() {
                               </div>
                             </div>
                           </div>
-                          <div className="text-button"></div>
+                          <div className="text-button">
+                             <div className="wraper">
+                              <form className="form">
+                                <div className="form-content form-box">
+                                  <p className="text">
+                                    <label>the.top/</label>
+                                  </p>
+                                  <p className="text">
+                                    <input value={value} onChange={changeValue}></input>
+                                    <span></span>
+                                  </p>
+                                </div>
+                                <div className="button-box" onClick={handleRegister}>
+                                  免费创建
+                                </div>
+                              </form>
+                             </div>
+                          </div>
                         </div>
                       </div>
                     </div>
