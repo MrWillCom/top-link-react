@@ -24,9 +24,12 @@ export function isUsername(value) {
 }
 
 export function isContainSpecial(value) {
+    // eslint-disable-next-line
     return /[`~!@#$%^&*()+<>?:"{},.\/;'[\]]/im.test(value);
 }
 
 export function isChinese(value) {
     return /[\u4e00-\u9fa5]/i.test(value);
 }
+
+export var staticUrl = "https://cos.lookcos.cn";

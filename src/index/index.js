@@ -1,6 +1,7 @@
 import "./index.css";
 import React from "react";
 import Header from "../header";
+import { staticUrl } from "../utils/utils";
 
 export default function Index() {
   const redirectToRegister = () => {
@@ -68,10 +69,10 @@ export default function Index() {
                     <div className="content-extra">
                       <div className="extra-wraper">
                         <div className="extra-box extra-animotion">
-                          <img src="/images/index/profile_blue.png" alt="profile_blue"></img>
-                          <img src="/images/index/profile_dark.png" alt="dark"></img>
-                          <img src="/images/index/profile_colorful.png" alt="colorful"></img>
-                          <img src="/images/index/profile_orange.png" alt="organge"></img>
+                          <img src={staticUrl + '/top/static/index/profile_blue.png'} alt="profile_blue"></img>
+                          <img src={staticUrl + '/top/static/index/profile_dark.png'}alt="dark"></img>
+                          <img src={staticUrl + "/top/static/index/profile_colorful.png"} alt="colorful"></img>
+                          <img src={staticUrl + "/top/static/index/profile_orange.png"} alt="organge"></img>
                         </div>
                       </div>
                     </div>
@@ -110,7 +111,7 @@ export default function Index() {
                     <div className="content-extra">
                       <div className="extra-wraper extra-wraper-reverse">
                         <div className="extra-common">
-                          <img src="/images/index/intro3.png" alt="blue"></img>
+                          <img src={staticUrl +  "/top/static/index/intro3.png"} alt="blue"></img>
                         </div>
                       </div>
                     </div>
@@ -149,7 +150,7 @@ export default function Index() {
                     <div className="content-extra">
                       <div className="extra-wraper">
                         <div className="extra-common">
-                          <img src="/images/index/intro4.png" alt="blue"></img>
+                          <img src={staticUrl +  "/top/static/index/intro4.png"} alt="blue"></img>
                         </div>
                       </div>
                     </div>

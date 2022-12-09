@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import request from "../utils/request";
 import styled from "styled-components";
 import SiderBar from "./siderbar";
-
+import { staticUrl } from "../utils/utils";
 
 export default function AdminSkin() {
 
@@ -172,7 +172,7 @@ function SkinDetail(props) {
         <div className="skin-detail" onClick={changeCurrTheme}>
             <div className="detail-box">
                 <Thumb isCurrent={currTheme===name}>
-                    <ThumbImg src={thumb}></ThumbImg>
+                    <ThumbImg src={staticUrl +  thumb}></ThumbImg>
                 </Thumb>
             </div>
             <div className="title">{title}</div>
