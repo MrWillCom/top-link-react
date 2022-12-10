@@ -148,6 +148,10 @@ function RegisterBase(props) {
             }
           }
         }
+      }).catch(err=>{
+        console.log(err)
+        setTipUsername({color: "red", text: "用户名已存在"})
+        props.setUsername({check: false, value: value}); 
       })
     }
   }

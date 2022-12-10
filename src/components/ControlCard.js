@@ -108,7 +108,7 @@ export default function ControlCard(props) {
         }).then(res => {
             console.log(res)
             let newLink = { ...link };
-            newLink.thumb = `/images/thumb/${res.data.file_name}`
+            newLink.thumb = `${res.data.file_name}`
             setLink(newLink);
             // 关闭弹出层与编辑组件
             setHeight(0);
@@ -238,7 +238,7 @@ export function ExtraControlDelete({ deleteLink, link, setHeight, height }) {
             console.log("删除卡片", res)
         })
         request({
-            url: "/upload/thumb",
+            url: "/upload/images/thumb",
             method: "DELETE",
             needToken: true,
             data: {data: link.thumb},

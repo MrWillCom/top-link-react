@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { VerifySvg } from "./Svg";
-
+import { staticUrl } from "../utils/utils";
 
 export const Container = styled.div`
   align-items: center;
@@ -165,15 +165,19 @@ export default function UserProfile(props) {
   const handleClickFooter = () => {
     window.open("/", "_blank");
   }
+
+  console.log("setting", setting);
   return (
     <Container>
       <Wraper>
         <ProfileBox>
           <BasicBg />
-          <ColorBox><Color profile_picture={setting.profile_picture} /></ColorBox>
+          <ColorBox>
+          {setting.profile_picture && <Color profile_picture={staticUrl + setting.profile_picture} />}
+          </ColorBox>
           <Profile>
             <ProfileDivImg>
-              <ProfileImg src={setting.profile_picture} />
+              {setting.profile_picture && <ProfileImg src={staticUrl + setting.profile_picture} />}
             </ProfileDivImg>
 
             <ProfielTitle>
@@ -322,7 +326,7 @@ function Link(props) {
       <LinkDiv><LinkBox>
         <LinkContent href={props.url} target="_blank">
           <LinkThumb hasThumb={props.thumb.length}>
-            <ThumbImg src={props.thumb} />
+            {props.thumb && <ThumbImg src={staticUrl+ props.thumb} />}
           </LinkThumb>
           <LinkTitle>{props.title}</LinkTitle>
         </LinkContent>

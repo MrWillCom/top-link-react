@@ -68,11 +68,12 @@
     transform: translateY(-2px);
 }
 
+.editor-button {
+    text-align: center;
+}
+
 .editor-upload input {
-    cursor: pointer;
     position: absolute;
-    right: 0;
-    top: 0;
     opacity: 0;
     filter: alpha(opacity=0);
     cursor: pointer

@@ -6,7 +6,7 @@ import { InputNormal } from "../components/utily";
 import SiderBar from "./siderbar";
 import { Button } from "../components/button";
 import ImageEditor from "../components/utily";
-import { debounceFunction } from "../utils/utils";
+import { debounceFunction, staticUrl } from "../utils/utils";
 
 
 export default function AdminSetting() {
@@ -139,7 +139,7 @@ export default function AdminSetting() {
             console.log(res.data);
             setSetting({
                 ...setting,
-                profile_picture: `/images/avatar/${res.data.file_name}`
+                profile_picture: `${res.data.file_name}`
             })
             setIsAvatarEditting(false);
         }).catch(err => {
@@ -155,7 +155,7 @@ export default function AdminSetting() {
         <div className="setting-root">
             <ImageEditor 
                 title="更换头像"
-                imageObject = {setting.profile_picture}
+                imageObject = {staticUrl + setting.profile_picture}
                 visible={isAvatarEditting} 
                 setVisible={setIsAvatarEditting}
                 hasRemove={false}
@@ -169,7 +169,7 @@ export default function AdminSetting() {
                     <div className="setting-wraper">
                         <div className="setting-avatar">
                             <div className="avatar">
-                                <img src={setting.profile_picture} alt="avatar" />
+                                {setting.profile_picture &&  <img src={staticUrl + setting.profile_picture} alt="avatar" />} 
                             </div>
                             <div className="upload-avatar">
                                 <Button primary onClick={handleChangeAvatar}>更换</Button>

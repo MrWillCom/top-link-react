@@ -108,7 +108,7 @@ export default function ImageEditor(props) {
 
                     {mode === 0 && <> <div className="editor-canvas">
                         <ReactAvatarEditor
-                            crossOrigin="anonymous"
+                            crossOrigin="use-credentials"
                             ref={setEitorRef}
                             scale={parseFloat(iconObj.scale)}
                             width={iconObj.width}
