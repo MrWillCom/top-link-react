@@ -8,6 +8,7 @@ import { setToken } from '../utils/request';
 import { debounceFunction } from '../utils/utils';
 import { isEmail, isNumber, isUsername, isChinese, isContainSpecial } from '../utils/utils';
 import "./register.css";
+import { Overlay } from '../components/utily';
 
 export default function Register() {
 
@@ -26,6 +27,8 @@ export default function Register() {
   const [step, setStep] = React.useState(1);
 
 
+  const [showOverlay, setShowOverlay] = React.useState(false);
+  const [msg, setMsg] = React.useState("");
 
   React.useEffect(()=>{
     if(fieldCode && interestCode){
@@ -41,7 +44,11 @@ export default function Register() {
     }
   }, [username, email, password]);
 
-  
+  const handleLayerEnter = () => {
+    setShowOverlay(false);
+    window.location.reload();
+  }
+
   const handleSubmit = () => {
     let formData = {
       user_name: username.value,
@@ -58,16 +65,24 @@ export default function Register() {
       setToken(res.data.access_token);
       window.location.href = "/admin";
     }).catch(err=>{
-      console.log(err)
+      setMsg("注册失败，可能是邮箱或用户名输入不正确，请重试");
+      setShowOverlay(true);
     })
   }
 
   return (
     <div className="register-main">
+      {showOverlay && <Overlay setIsOverlayShow={setShowOverlay} title="提示信息">
+        <p class="layer-msg">{msg}</p>
+        <div className="layer-button">
+          <Button primary onClick={handleLayerEnter}>确定</Button>
+        </div>
+          </Overlay>}
       <div className="title-wraper">
         <div className="title">THE.TOP LINK</div>
       </div>
       <div className="register-wraper">
+        
         <div className="register-box">
           {step === 1 && <RegisterBase setEmail={setEmail} setPassword={setPassword} setUsername={setUsername}></RegisterBase>}
           {step === 2 && <CompleteData onChangeField={setFieldCode} onChangeInterest={setInterestCode}></CompleteData>}
