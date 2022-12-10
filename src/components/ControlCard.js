@@ -120,7 +120,7 @@ export default function ControlCard(props) {
 
     const handleIconRemove = () => {
         request({
-            url: "/upload/thumb",
+            url: "/upload/images/thumb",
             method: "DELETE",
             needToken: true,
             data: {data: link.thumb},
