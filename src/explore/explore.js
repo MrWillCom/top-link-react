@@ -3,6 +3,7 @@ import Header from "../header"
 import React from "react";
 import request from "../utils/request";
 import { RightSvg } from "../components/Svg";
+import { staticUrl } from "../utils/utils";
 import "./explore.css"
 
 
@@ -175,7 +176,7 @@ function User({ user }) {
     <div className="white-box users">
       <div className="user-item">
         <div className="name">
-          <img src={user.profile_picture} alt="avatar"></img>
+          {user.profile_picture && <img src={staticUrl + user.profile_picture} alt="avatar"></img>}
           <div className="title">{user.page_title}</div>
         </div>
         <div className="bio">
