@@ -1,5 +1,6 @@
 
-import Header from "../header"
+import Header from "../common/header"
+import Footer from "../common/footer"
 import React from "react";
 import request from "../utils/request";
 import { RightSvg } from "../components/Svg";
@@ -162,6 +163,7 @@ class Explore extends React.Component {
 
           </div>
         </div>
+        <Footer />
       </div>
     )
   }

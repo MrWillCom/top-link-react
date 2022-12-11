@@ -1,6 +1,8 @@
 import "./index.css";
 import React from "react";
-import Header from "../header";
+import Header from "../common/header";
+import Footer from "../common/footer";
+
 import { staticUrl } from "../utils/utils";
 
 export default function Index() {
@@ -160,11 +162,7 @@ export default function Index() {
             </div>
           </div>
         </div>
-        <div className="footer">
-          <div className="footer-wraper">
-            <p>&copy;THE.TOP 2019 - 2022 | 邮箱: lookcos@gmail.com</p>
-          </div>
-        </div>
+        <Footer></Footer>
       </div>
     </div>
   );

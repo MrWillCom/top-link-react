@@ -2,6 +2,24 @@
     width: 100%;
 }
 
+.need-pc {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .admin {
+        display: none;
+    }
+    .need-pc {
+        display: block;
+        text-align: center;
+        padding: 20px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+
 .admin-header {
     border-bottom: 1px solid rgb(224 226 217 / 1);
 }

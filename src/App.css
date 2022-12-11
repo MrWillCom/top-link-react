@@ -1,7 +1,9 @@
 :root {
   --black: #1d1d1f;
   --gray-bg: #f2f2f2;
+  --gray-text: #515154; 
 }
+
 
 *, ::before, ::after {
   box-sizing: inherit;

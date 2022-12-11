@@ -32,7 +32,7 @@ export default function Admin() {
     }
     
     return (
-        /* 公共的头部 */
+        <>
         <div className="admin flex flex-direction-column">
             {/* 顶部的导航区*/}
             <div className="admin-header flex flex-direction-row">
@@ -66,5 +66,7 @@ export default function Admin() {
                 </Routes>
             </div>
         </div>
+        <div className="need-pc">后台暂时仅支持大屏幕设备访问</div>
+        </>
     );
 }
