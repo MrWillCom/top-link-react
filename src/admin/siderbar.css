@@ -36,7 +36,7 @@
 
 .previewWrap ::after {
     content: "";
-    background-image: url(http://127.0.0.1/images/preview-device.svg);
+    background-image: url(https://cos.lookcos.cn/top/static/svg/preview-device.svg);
     background-position: 50%;
     background-size: contain;
     background-repeat: no-repeat;
