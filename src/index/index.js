@@ -2,10 +2,12 @@ import "./index.css";
 import React from "react";
 import Header from "../common/header";
 import Footer from "../common/footer";
+import { useTranslation } from "react-i18next";
 
 import { staticUrl } from "../utils/utils";
 
 export default function Index() {
+  const { t } = useTranslation();
   const redirectToRegister = () => {
     window.location.href = "/register"
   }
@@ -38,12 +40,12 @@ export default function Index() {
                       <div className="content-text">
                         <div className="text-wraper">
                           <div className="text-title">
-                            <div className="text-h1 text-colorful">THE TOP LINK 您的专属数字名片</div>
+                            <div className="text-h1 text-colorful">{t("index.intro1.title")}</div>
                           </div>
                           <div className="text-subtitle">
                             <div className="subtitle-wraper">
                               <div className="subtitle-box text-colorful">
-                                <p>仅需几分钟创建您的专属数字名片页面，一站聚合所有平台链接。</p>
+                                <p>{t("index.intro1.description")}</p>
                               </div>
                             </div>
                           </div>
@@ -60,7 +62,7 @@ export default function Index() {
                                   </p>
                                 </div>
                                 <div className="button-box" onClick={handleRegister}>
-                                  免费创建
+                                  {t("index.intro1.buttonText")}
                                 </div>
                               </form>
                              </div>
@@ -95,17 +97,17 @@ export default function Index() {
                       <div className="content-text">
                         <div className="text-wraper">
                           <div className="text-title">
-                            <div className="text-h1">Link Everything 链一切</div>
+                            <div className="text-h1">{t("index.intro2.title")}</div>
                           </div>
                           <div className="text-subtitle">
                             <div className="subtitle-wraper">
                               <div className="subtitle-box">
-                                <p>不论是抖音、淘宝店铺、哔哩哔哩还是其他平台，将您所有的链接融入一个简单界面</p>
+                                <p>{t("index.intro2.description")}</p>
                               </div>
                             </div>
                           </div>
                           <div className="text-button-common" onClick={redirectToRegister}>
-                            <button>免费注册</button>
+                            <button>{t("index.intro2.buttonText")}</button>
                           </div>
                         </div>
                       </div>
@@ -134,17 +136,17 @@ export default function Index() {
                       <div className="content-text">
                         <div className="text-wraper">
                           <div className="text-title">
-                            <div className="text-h1">Explore space 探索你关注的领域IP</div>
+                            <div className="text-h1">{t("index.intro2.title")}</div>
                           </div>
                           <div className="text-subtitle">
                             <div className="subtitle-wraper">
                               <div className="subtitle-box">
-                                <p>搜索你喜欢的自媒体、艺人、社群、品牌...</p>
+                                <p>{t("index.intro3.description")}</p>
                               </div>
                             </div>
                           </div>
                           <div className="text-button-common" onClick={redirectToExplore}>
-                            <button>开始探索</button>
+                            <button>{t("index.intro3.buttonText")}</button>
                           </div>
                         </div>
                       </div>

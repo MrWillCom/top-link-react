@@ -1,0 +1,33 @@
+{
+  "title": "链一切",
+  "selectLang": "Switch to English",
+  "header": {
+    "explore": "探索",
+    "login": "登录",
+    "signup": "免 费 注 册",
+    "logout": "退 出 登 录",
+    "admin": "管 理"
+  },
+  "footer": {
+    "products": "产品",
+    "documents": "文档",
+    "community": "社区"
+  },
+  "index": {
+    "intro1": {
+      "title": "THE TOP LINK 您的专属数字名片",
+      "description": "万山不许一溪奔，栏得溪声日夜喧。创建专属数字名片，释放你的巨大能量。",
+      "buttonText": "免费创建"
+    },
+    "intro2": {
+      "title": "创建并自定义你的个人名片",
+      "description": "千里之行，始于足下。不论是抖音、淘宝店铺、哔哩哔哩、西瓜视频还是任何其他平台，仅需几分钟将您所有的链接融入一个简单界面。",
+      "buttonText": "免费注册"
+    },
+    "intro3": {
+      "title": "进入探索空间，发现你关注的领域IP",
+      "description": "海阔凭鱼跃，天高任鸟飞。在这里，你可以搜索符合个人喜好的自媒体、艺人、社群、品牌等，甚至寻求合作机会...",
+      "buttonText": "开始探索"
+    }
+  }
+}

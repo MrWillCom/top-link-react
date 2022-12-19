@@ -13,7 +13,7 @@ class Explore extends React.Component {
     super(props);
     this.state = {
       page: 0,
-      perPage: 5,
+      perPage: 10,
       totalPages: 99,
       userList: [],
       currentField: 0,
@@ -157,10 +157,10 @@ class Explore extends React.Component {
                 }
                 return null;
               })}
-              {this.state.isLoading && <div className="loading">加载中...</div>}
-              {!this.state.hasMore && <div className="no-more">没有更多了</div>}
-            </div>
 
+            </div>
+            {this.state.isLoading && <div className="loading">加载中...</div>}
+            {!this.state.hasMore && <div className="no-more">没有更多了</div>}
           </div>
         </div>
         <Footer />

@@ -144,7 +144,7 @@ export default function ControlCard(props) {
                 imageObject = {link.thumb}
                 visible={isOverlayShow}
                 setVisible={setIsOverlayShow} 
-                hasRemove={true} 
+                hasRemove={false} 
                 handleRemove={handleIconRemove} 
                 handleResult={handleIconResult}
             />

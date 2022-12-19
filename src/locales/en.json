@@ -1,0 +1,33 @@
+{
+  "title": "Link Everything.",
+  "selectLang": "切换为中文",
+  "header": {
+    "explore": "Explore",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "admin": "Admin"
+  },
+  "footer": {
+    "products": "Products",
+    "documents": "Documents",
+    "community": "Community"
+  },
+  "index": {
+    "intro1": {
+      "title": "Link everything in one short link.",
+      "description": "Create your own digital business card page in just a few minutes. All from the one link in bio.",
+      "buttonText": "Claim your link"
+    },
+    "intro2": {
+      "title": "Create and customize your bio link in minutes.",
+      "description": "Whether it's Tik Tok, Twitter, Youtube, or any other platform, put all your links into one simple link.",
+      "buttonText": "Get started for free"
+    },
+    "intro3": {
+      "title": "Explore space. Explore the IP in your area of interest",
+      "description": "Search for your favourite self-publishers, artists, communities, brands...",
+      "buttonText": "Start your exploration"
+    }
+  }
+}

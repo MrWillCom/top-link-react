@@ -80,3 +80,11 @@
   margin-top: 20px;
   font-size: 14px;
 }
+
+.footer-main .select-lang {
+  cursor: pointer;
+}
+
+.footer-main .select-lang:hover {
+  color: black;
+}

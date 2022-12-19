@@ -2,16 +2,19 @@ import "./header.css";
 import React from "react";
 import { getToken } from "../utils/request";
 import styled from "styled-components";
-
+import { useTranslation } from "react-i18next";
 
 export default function Header(props) {
-  const [hasToken, setHasToken] = React.useState(false);
+  const { t } = useTranslation();
 
+  const [hasToken, setHasToken] = React.useState(false);
   React.useEffect(()=>{
     const token = getToken();
     if(token && token.length > 0){
       setHasToken(true);
     }
+
+
   }, [])
 
   const handleLogout = () => {
@@ -43,7 +46,7 @@ export default function Header(props) {
             <div className="header-bar">
               <div className="header-mobile">
                 <a href="/">
-                  <div className="mobile-logo">THE.TOP</div>
+                  <div className="mobile-logo">THE TOP LINK</div>
                 </a>
                 <div className="mobile-user">
                   <div className="mobile-user-wraper">
@@ -51,14 +54,14 @@ export default function Header(props) {
                       <div className="login-wraper user-box">
                         <div className="user-wraper" onClick={handleClickLogin}>
                           <div className="login-box user-box-mobile">
-                            <span className="login-text">{hasToken ? "控制台": "登录"}</span>
+                            <span className="login-text">{hasToken ? t("header.admin"): t("header.login")}</span>
                           </div>
                         </div>
                       </div>
                       <div className="signup-wraper user-box">
                         <div className="user-wraper" onClick={handleClickSignup}>
                           <div className="signup-box user-box-mobile">
-                            <span className="signup-text">{hasToken ?"退 出 登 录": "免 费 注 册"}</span>
+                            <span className="signup-text">{hasToken ?t("header.logout"): t("header.signup")}</span>
                           </div>
                         </div>
                       </div>
@@ -70,14 +73,14 @@ export default function Header(props) {
                 <div className="desktop-nav">
                   <div className="desktop-nav-wraper">
                     <a className="nav-logo" href="/">
-                      <div className="logo-mobile">THE.TOP</div>
-                      <div className="logo-desktop">THE.TOP LINK</div>
+                      <div className="logo-mobile">THE TOP</div>
+                      <div className="logo-desktop">THE TOP LINK</div>
                     </a>
                     <div className="nav-item">
                       <div className="item">
                         <a className="item-box" href="/explore">
                           <div className="item-wraper">
-                            <span className="item-text">探索</span>
+                            <span className="item-text">{t("header.explore")}</span>
                           </div>
                         </a>
                       </div>
@@ -89,14 +92,14 @@ export default function Header(props) {
                     <div className="login-wraper user-box">
                       <div className="user-wraper" onClick={handleClickLogin}>
                         <div className="login-box">
-                          <span className="login-text">{hasToken ? "控制台": "登录"}</span>
+                          <span className="login-text">{hasToken ?t("header.admin"): t("header.login")}</span>
                         </div>
                       </div>
                     </div>
                     <div className="signup-wraper user-box">
                       <div className="user-wraper" onClick={handleClickSignup}>
                         <div className="signup-box">
-                          <span className="signup-text">{hasToken ?"退 出 登 录": "免 费 注 册"}</span>
+                          <span className="signup-text">{hasToken ?t("header.logout"): t("header.signup")}</span>
                         </div>
                       </div>
                     </div>
