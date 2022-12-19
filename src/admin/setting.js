@@ -7,7 +7,7 @@ import SiderBar from "./siderbar";
 import { Button } from "../components/button";
 import ImageEditor from "../components/utily";
 import { debounceFunction, staticUrl } from "../utils/utils";
-
+import { useTranslation } from "react-i18next";
 
 export default function AdminSetting() {
 
@@ -17,6 +17,7 @@ export default function AdminSetting() {
     const [links, setLinks] = useState([]);
     const [isAvatarEditting, setIsAvatarEditting] = useState(false);
 
+    const {t} = useTranslation();
 
     /* ---------- LIFETIME ---------- */
     useEffect(() => {
@@ -154,7 +155,7 @@ export default function AdminSetting() {
     return (
         <div className="setting-root">
             <ImageEditor 
-                title="更换头像"
+                title={t("adminSetting.layerTitle")}
                 imageObject = {staticUrl + setting.profile_picture}
                 visible={isAvatarEditting} 
                 setVisible={setIsAvatarEditting}
@@ -164,7 +165,7 @@ export default function AdminSetting() {
             />
 
             <div className="setting-main admin-left">
-                <h4>个人资料</h4>
+                <h4>{t("adminSetting.profile")}</h4>
                 <div className="setting-box">
                     <div className="setting-wraper">
                         <div className="setting-avatar">
@@ -172,12 +173,12 @@ export default function AdminSetting() {
                                 {setting.profile_picture &&  <img src={staticUrl + setting.profile_picture} alt="avatar" />} 
                             </div>
                             <div className="upload-avatar">
-                                <Button primary onClick={handleChangeAvatar}>更换</Button>
+                                <Button primary onClick={handleChangeAvatar}>{t("adminSetting.changeAvatar")}</Button>
                             </div>
                         </div>
                         <div className="setting-info">
-                            <InputNormal title="标题" content={setting.page_title} maxLength={28} onChange={handleChangeTitle}/>
-                            <InputNormal title="简介" content={setting.page_bio} maxLength={80} onChange={handleChangeBio}/>
+                            <InputNormal title={t("adminSetting.title")} content={setting.page_title} maxLength={28} onChange={handleChangeTitle}/>
+                            <InputNormal title={t("adminSetting.bio")} content={setting.page_bio} maxLength={80} onChange={handleChangeBio}/>
                             <div className="bio"></div>
                         </div>
                     </div>

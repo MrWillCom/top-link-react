@@ -39,6 +39,12 @@
     justify-content: space-around;
 }
 
+.nav-user .link {
+    padding-left: 1em;
+    color: #8129d9;
+    text-decoration: underline;
+}
+
 .nav-user .title {
     padding-right: 5px;
     font-weight: 400;
@@ -74,7 +80,14 @@
 }
 
 
-.logout-box .login-out {
+
+.nav-user .nav-tool {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-user .nav-tool .link-index {
     cursor: pointer;
     padding: 10px 15px;
     font-size: 15px;
@@ -82,7 +95,24 @@
     color: #676b5f;
 }
 
-.logout-box .login-out:hover {
+.nav-user .nav-tool .link-index:hover { 
+    border-radius: 10px;
+    background: var(--gray-bg);
+}
+
+.nav-user .link-index a {
+    color: #676b5f;
+}
+
+.nav-user .logout-box .login-out {
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #676b5f;
+}
+
+.nav-user .logout-box .login-out:hover {
     border-radius: 10px;
     background: var(--gray-bg);
 }

@@ -4,6 +4,7 @@ import request from "../utils/request";
 import styled from "styled-components";
 import SiderBar from "./siderbar";
 import { staticUrl } from "../utils/utils";
+import { useTranslation } from "react-i18next";
 
 export default function AdminSkin() {
 
@@ -17,6 +18,8 @@ export default function AdminSkin() {
     // 目前的主题名字
     const [currTheme, setCurrTheme] = useState("");
     const [themes, setThemes] = useState([]);
+
+    const { t } = useTranslation();
 
     /* ---------- LIFETIME ---------- */
     useEffect(() => {
@@ -104,7 +107,7 @@ export default function AdminSkin() {
     return (
         <div className="skin-root">
             <div className="skin-main admin-left">
-                <h4>主题列表</h4>
+                <h4>{t("adminTheme.list")}</h4>
                 <div className="skin-box">
                     <div className="skin-wraper">
                         <SkinList themes={themes} currTheme={currTheme} setCurrTheme={setCurrTheme}></SkinList>

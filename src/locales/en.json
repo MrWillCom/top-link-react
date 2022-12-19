@@ -29,5 +29,40 @@
       "description": "Search for your favourite self-publishers, artists, communities, brands...",
       "buttonText": "Start your exploration"
     }
+  },
+
+  "adminNav": {
+    "link": "Link",
+    "theme": "Theme",
+    "setting": "Setting",
+    "explore": "Explore",
+    "ownLink": "Your link",
+    "home": "Home",
+    "logout": "Logout"
+  },
+
+  "adminLink": {
+    "addLink": "Add link",
+    "editText":"Edit the title and url",
+    "layerTitle": "Upload Image"
+  },
+
+  "adminTheme": {
+    "list":"Theme List"
+  },
+
+  "adminSetting": {
+    "profile": "Profile",
+    "layerTitle": "Update Avatar",
+    "changeAvatar": "Upload New Avatar",
+    "title": "Title",
+    "bio": "Bio"
+  },
+  "pluginImageEditor": {
+    "upload": "Upload your local image",
+    "choose": "Choose from the gallery",
+    "confirm": "OK",
+    "remove": "Remove current",
+    "scale": "Scale"
   }
 }

@@ -4,6 +4,7 @@ import ReactAvatarEditor from "react-avatar-editor";
 import { CloseSvg } from "./Svg";
 import request from "../utils/request";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 export default function ImageEditor(props) {
     /*
@@ -16,6 +17,8 @@ export default function ImageEditor(props) {
         - handleIconRemove: 点击删除图片的回调函数
         - handleIconResult: 点击确认图片的回调函数
     */
+
+    const {t} = useTranslation();
 
     const { title, setVisible, hasRemove, imageObject, handleRemove, handleResult } = props;
     const [isOverlayShow, setIsOverlayShow] = React.useState(false);
@@ -122,7 +125,7 @@ export default function ImageEditor(props) {
                         />
                         <div className="editor-scale flex flex-row">
                             <div className="scale-label">
-                                缩放:
+                                {t("pluginImageEditor.scale")}:
                             </div>
                             <div className="scale-box">
                                 <input
@@ -140,20 +143,20 @@ export default function ImageEditor(props) {
 
                     <div className="editor-ops">
                         <div className="editor-button editor-select" onClick={handleModeChange}>
-                            从图标库选择
+                            {t("pluginImageEditor.choose")}
                         </div>
 
                         {hasRemove && <div className="editor-enter editor-button" onClick={handleImageRemove}>
-                            移除当前
+                            {t("pluginImageEditor.remove")}
                         </div>}
 
                         <div className="editor-upload editor-button">
-                            上传图片
+                            {t("pluginImageEditor.upload")}
                             <input name="newImage" type="file" onChange={handleNewImage} />
                         </div>
 
                         <div className="editor-enter editor-button" onClick={handleImageResult}>
-                            确定
+                            {t("pluginImageEditor.confirm")}
                         </div>
                     </div></>}
 

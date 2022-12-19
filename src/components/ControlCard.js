@@ -7,6 +7,7 @@ import AnimateHeight from "react-animate-height";
 import request from "../utils/request";
 import ImageEditor from "./utily";
 import "./ControlCard.css";
+import { t } from "i18next";
 
 
 export default function ControlCard(props) {
@@ -92,12 +93,14 @@ export default function ControlCard(props) {
         setIsEditingUrl(false);
     }
 
-    // handleEdit
+    // handleEditIcon
     const handleEditIcon = () => {
+        /*
         setExtraId(2);
         setHeight('auto');
+        */
+       setIsOverlayShow(true);
     }
-    
 
     const handleIconResult = (imageData) => {
         request({
@@ -140,7 +143,7 @@ export default function ControlCard(props) {
         <div className="link-control-item-box">
 
             <ImageEditor 
-                title="上传图片"
+                title={t("adminLink.layerTitle")}
                 imageObject = {link.thumb}
                 visible={isOverlayShow}
                 setVisible={setIsOverlayShow} 

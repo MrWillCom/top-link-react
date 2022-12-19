@@ -56,7 +56,7 @@ export const FooterBox = styled.div`
 
 export const FooterContent = styled.div`
   color: ${(props) => props.theme.footer_color};
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
 `;
 
@@ -196,7 +196,7 @@ export default function UserProfile(props) {
 
         <Footer>
           <FooterBox>
-            <FooterContent onClick={handleClickFooter}>Thetop</FooterContent>
+            <FooterContent onClick={handleClickFooter}>THE TOP LINK</FooterContent>
           </FooterBox>
         </Footer>
       </Wraper>

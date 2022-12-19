@@ -7,6 +7,7 @@ import { v4 as uuid } from "uuid";
 import request from "../utils/request";
 import SiderBar from "./siderbar";
 import { debounceFunction } from "../utils/utils";
+import { useTranslation } from "react-i18next";
 
 export default function AdminLink() {
 
@@ -18,6 +19,8 @@ export default function AdminLink() {
     const [hasLinks, setHasLinks] = useState(true);
     const [theme, setTheme] = useState({});
     const [isSorting, setIsSorting] = useState(false); // 控制卡片是否在排序中
+
+    const {t} = useTranslation();
 
     /* ---------- LIFETIME ---------- */
     useEffect(() => {
@@ -130,7 +133,7 @@ export default function AdminLink() {
     const addNewLink = () => {
         let newLink = {
             thumb: "",
-            title: "编辑标题与链接",
+            title: t("adminLink.editText"),
             url: "https://the.top/",
             lid: uuid(),
             display: false,
@@ -170,7 +173,7 @@ export default function AdminLink() {
                     <div className="link-tools">
                         <div className="link-card-add link-add" onClick={addNewLink}>
                             <button className="link-button">
-                               <PlusSvg/ > 添加新链接
+                               <PlusSvg/ > {t("adminLink.addLink")}
                             </button>
                         </div>
                     </div>

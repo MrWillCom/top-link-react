@@ -29,5 +29,36 @@
       "description": "海阔凭鱼跃，天高任鸟飞。在这里，你可以搜索符合个人喜好的自媒体、艺人、社群、品牌等，甚至寻求合作机会...",
       "buttonText": "开始探索"
     }
+  },
+  "adminNav": {
+    "link": "链接",
+    "theme": "主题",
+    "setting": "设置",
+    "explore": "探索",
+    "ownLink": "专属链接",
+    "home": "首页",
+    "logout": "退出登录"
+  },
+  "adminLink": {
+    "addLink": "添加新链接",
+    "editText":"编辑标题与链接",
+    "layerTitle": "上传图片"
+  },
+  "adminTheme": {
+    "list":"主题列表"
+  },
+  "adminSetting": {
+    "profile": "个人资料",
+    "layerTitle": "更换头像",
+    "changeAvatar": "更换头像",
+    "title": "标题",
+    "bio": "简介"
+  },
+  "pluginImageEditor": {
+    "upload": "本地上传",
+    "choose": "从图库选择",
+    "confirm": "确定",
+    "remove": "移除当前",
+    "scale": "缩放"
   }
 }
