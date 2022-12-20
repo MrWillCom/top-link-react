@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 
 export default function AdminSkin() {
 
- 
 
     /* ----------  STATE ---------- */
     const [theme, setTheme] = useState({});
@@ -19,7 +18,8 @@ export default function AdminSkin() {
     const [currTheme, setCurrTheme] = useState("");
     const [themes, setThemes] = useState([]);
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const [isEn, setIsEn] = useState(i18n.language === "en" ? true : false);
 
     /* ---------- LIFETIME ---------- */
     useEffect(() => {
@@ -110,7 +110,7 @@ export default function AdminSkin() {
                 <h4>{t("adminTheme.list")}</h4>
                 <div className="skin-box">
                     <div className="skin-wraper">
-                        <SkinList themes={themes} currTheme={currTheme} setCurrTheme={setCurrTheme}></SkinList>
+                        <SkinList themes={themes} currTheme={currTheme} setCurrTheme={setCurrTheme} isEn={isEn}></SkinList>
                     </div>
                 </div>
             </div>
@@ -124,11 +124,11 @@ export default function AdminSkin() {
 }
 
 function SkinList(props) {
-    const { themes, currTheme, setCurrTheme } = props;
+    const { themes, currTheme, setCurrTheme, isEn} = props;
     return (
         <div className="skin-list">
             {themes.map((theme, index) => {
-                return <SkinDetail key={index} {...theme} setCurrTheme={setCurrTheme} currTheme={currTheme}></SkinDetail>
+                return <SkinDetail key={index} {...theme} isEn={isEn} setCurrTheme={setCurrTheme} currTheme={currTheme}></SkinDetail>
             })}
         </div>
     )
@@ -152,7 +152,7 @@ const ThumbImg = styled.img`
 
 
 function SkinDetail(props) {
-    const { thumb, title, name, currTheme, setCurrTheme} = props;
+    const { thumb, title, title_en, name, currTheme, setCurrTheme, isEn} = props;
 
     const patchTheme = (name) => {
         request({
@@ -178,7 +178,7 @@ function SkinDetail(props) {
                     <ThumbImg src={staticUrl +  thumb}></ThumbImg>
                 </Thumb>
             </div>
-            <div className="title">{title}</div>
+            <div className="title">{isEn? title_en : title}</div>
         </div>
     )
 }

@@ -60,5 +60,17 @@
     "confirm": "确定",
     "remove": "移除当前",
     "scale": "缩放"
+  },
+  "login": {
+    "title": "THE TOP LINK - 登录",
+    "username": "账号",
+    "password": "密码",
+    "login": "登录",
+    "logining": "登录中...",
+    "inputUsername": "请输入用户名",
+    "inputPassword": "请输入密码",
+    "error": "账号或密码错误",
+    "register": "注册",
+    "noAccount": "没有账号？"
   }
 }

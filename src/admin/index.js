@@ -26,6 +26,7 @@ export default function Admin() {
             })
         }
         initMe();
+        document.title = "THE TOP LINK - " + t("title");
     }, []);
 
     const handleLoginOut = () => {

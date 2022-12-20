@@ -9,11 +9,13 @@ import { debounceFunction } from '../utils/utils';
 import { isEmail, isNumber, isUsername, isChinese, isContainSpecial } from '../utils/utils';
 import "./register.css";
 import { Overlay } from '../components/utily';
+import { useTranslation } from 'react-i18next';
 
 export default function Register() {
+  const {t, i18n} = useTranslation();
 
   React.useEffect(()=>{
-    document.title = "THE.TOP | 创建账户";
+    document.title = "THE TOP LINK - " + i18n.language === "zh" ? "注册" : "Register";
   }, [])
 
   const [username, setUsername] = React.useState({check: false,value: ""});

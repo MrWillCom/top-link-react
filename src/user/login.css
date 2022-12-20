@@ -16,6 +16,11 @@
   flex-direction: column;
 }
 
+.login-main .title {
+  font-weight: 600;
+  font-size: 30px;
+}
+
 .login-title {
   padding-left: 4px;
   font-weight: 600;
@@ -25,4 +30,15 @@
 
 .form-item {
   margin-bottom: 10px;
+}
+
+.login-main .register-link {
+  padding: 10px 0px;
+}
+
+.login-main .register-link .register {
+  padding-left: 1em;
+  color: var(--primary);
+  text-decoration: underline;
+  cursor: pointer;
 }

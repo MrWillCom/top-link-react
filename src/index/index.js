@@ -7,7 +7,9 @@ import { useTranslation } from "react-i18next";
 import { staticUrl } from "../utils/utils";
 
 export default function Index() {
+
   const { t } = useTranslation();
+
   const redirectToRegister = () => {
     window.location.href = "/register"
   }
@@ -25,6 +27,13 @@ export default function Index() {
   const handleRegister = () => {
     window.open("/register/" + value);
   }
+
+  React.useEffect(() => {
+    document.title = "THE TOP LINK - " + t("title");
+    return () => {
+      
+    };
+  }, []);
 
   return (
     <div className="index-main">
@@ -136,7 +145,7 @@ export default function Index() {
                       <div className="content-text">
                         <div className="text-wraper">
                           <div className="text-title">
-                            <div className="text-h1">{t("index.intro2.title")}</div>
+                            <div className="text-h1">{t("index.intro3.title")}</div>
                           </div>
                           <div className="text-subtitle">
                             <div className="subtitle-wraper">

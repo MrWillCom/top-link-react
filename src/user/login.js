@@ -5,16 +5,18 @@ import { Button } from "../components/button";
 import styled from "styled-components";
 import request from "../utils/request";
 import { setToken } from "../utils/request";
-
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
+  const { t } = useTranslation();
   React.useEffect(() => {
-    document.title = "登录 - THE.TOP LINK"
+    document.title = t("login.title") 
   }, [])
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [msg, setMsg] = React.useState({ color: "white", text: "提示文档" });
+
   const handlePasswordChange = (value) => {
     setPassword(value);
   }
@@ -25,10 +27,10 @@ export default function Login() {
 
   const login = () => {
     if (username.length < 1 || password.length < 1) {
-      setMsg({ color: "red", text: "请输入用户名和密码" });
+      setMsg({ color: "red", text: t("login.inputUsername") });
       return;
     } else {
-      setMsg({ color: "green", text: "正在登录..." });
+      setMsg({ color: "green", text: t("login.logining") });
       request({
         url: "/user/login",
         method: "POST",
@@ -37,9 +39,13 @@ export default function Login() {
         setToken(res.data.access_token);
         window.location.href = "/admin";
       }).catch((err) => {
-        setMsg({ color: "red", text: "用户名或密码错误" });
+        setMsg({ color: "red", text: t("login.error") });
       })
     }
+  }
+
+  const hanldeRegister = () => {
+    window.location.href = "/register";
   }
 
   const handleKeyDown = (e) => {
@@ -51,19 +57,23 @@ export default function Login() {
   return (
     <div className="login-main" onKeyDown={handleKeyDown}>
       <div className="title-wraper">
-        <div className="title">THE.TOP LINK</div>
+        <div className="title">THE TOP LINK</div>
       </div>
       <div className="login-wraper">
         <div className="login-box">
-          <div className="login-title">登录</div>
+          <div className="login-title">{t("login.login")}</div>
           <div className="form-item">
-            <InputWithLable title={"账号"} placeholder={"请输入用户名"} color="white" onChange={handleUsernameChange} content={username}></InputWithLable>
+            <InputWithLable title={t("login.username")} placeholder={t("login.inputUsername")} color="white" onChange={handleUsernameChange} content={username}></InputWithLable>
           </div>
           <div className="form-item">
-            <InputWithLable title={"密码"} placeholder={"请输入密码"} type="password" color="white" onChange={handlePasswordChange} content={password}></InputWithLable>
+            <InputWithLable title={t("login.password")} placeholder={t("login.inputPassword")} type="password" color="white" onChange={handlePasswordChange} content={password}></InputWithLable>
           </div>
           <Message color={msg.color}>{msg.text}</Message>
-          <Button primary onClick={login}>登录</Button>
+          <Button primary onClick={login}>{t("login.login")}</Button>
+          <div className="register-link"> 
+            <span>{t("login.noAccount")}</span>
+            <a className="register" onClick={hanldeRegister}>{t("login.register")}</a> 
+          </div>
         </div>
       </div>
     </div>
