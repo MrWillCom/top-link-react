@@ -43,7 +43,7 @@ export default function AdminSetting() {
                 url: `/theme/${themeName}`,
                 method: "GET",
             }).then(res => {
-                console.log("fetch theme ->", res.data);
+               
                 setTheme(res.data);
             }).catch(err => {
                 console.log("get theme failed", err);
@@ -55,7 +55,7 @@ export default function AdminSetting() {
                 url: `/setting/user/${username}`,
                 method: "GET",
             }).then(res => {
-                console.log(res.data)
+               
                 setSetting(res.data);
                 getTheme(res.data.theme);
                 // 获取并设置用户信息

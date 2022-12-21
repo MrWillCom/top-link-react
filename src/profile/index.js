@@ -23,7 +23,7 @@ export default function Profile() {
             url: `/theme/${themeName}`,
             method: "GET",
         }).then(res => {
-            console.log("get theme success", res.data);
+            // console.log("get theme success", res.data);
             setTheme(res.data);
         }).catch(err => {
             console.log("get theme failed", err);
@@ -35,13 +35,13 @@ export default function Profile() {
             url: `/setting/user/${username}`,
             method: "GET",
         }).then(res => {
-            console.log("get user successfully", res.data);
+            // console.log("get user successfully", res.data);
             setSetting(res.data);
             getTheme(res.data.theme);
             // 获取并设置用户信息
         }).catch(err => {
             window.location.href = "/404";
-            console.log("get user failed", err);
+            // console.log("get user failed", err);
         })
     }
 

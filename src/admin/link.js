@@ -30,8 +30,6 @@ export default function AdminLink() {
                 method: "GET",
                 needToken: true,
             }).then(res => {
-
-                console.log("get me successfully", res.data);
                 // 获取并设置用户设置信息
                 getSetting(res.data.user_name);
                 // 获取用户链接相关信息
@@ -93,7 +91,6 @@ export default function AdminLink() {
             url: `/theme/${themeName}`,
             method: "GET",
         }).then(res => {
-            console.log("fetch theme ->", res.data);
             setTheme(res.data);
         }).catch(err => {
             console.log("get theme failed", err);

@@ -109,7 +109,7 @@ export default function ControlCard(props) {
             needToken: true,
             data: {image_b64: imageData, origin: link.thumb}, 
         }).then(res => {
-            console.log(res)
+            // console.log(res)
             let newLink = { ...link };
             newLink.thumb = `${res.data.file_name}`
             setLink(newLink);

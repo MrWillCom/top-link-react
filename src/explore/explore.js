@@ -27,7 +27,7 @@ class Explore extends React.Component {
   }
 
   init() {
-    console.log("init...")
+    // console.log("init...")
     request({
       url: "/setting/fields",
       method: "GET",
@@ -74,7 +74,7 @@ class Explore extends React.Component {
         this.setState({ isLoading: false });
         return;
       }
-      console.log(currentField, currentInterest, page, perPage)
+      // console.log(currentField, currentInterest, page, perPage)
       request({
         url: `/setting/explore?field_code=${currentField}&interest_code=${currentInterest}&page=${page}&limit=${perPage}`,
         method: "GET"
@@ -83,7 +83,7 @@ class Explore extends React.Component {
           this.setState({ totalPages: res.count })
         }
         this.setState({ userList: this.state.userList.concat(res.data), isLoading: false })
-        console.log(`loadDone: ${page}, total pages: ${totalPages}`);
+        // console.log(`loadDone: ${page}, total pages: ${totalPages}`);
       })
     })
   }

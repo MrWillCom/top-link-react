@@ -28,7 +28,7 @@ export default function AdminSkin() {
                 url: `/theme/all`,
                 method: "GET",
             }).then(res => {
-                console.log("get themes success", res.data);
+                //console.log("get themes success", res.data);
                 let themes = res.data.filter(theme => {return theme.display !== false});
                 themes.sort((a, b) => {return a.position - b.position});
                 setThemes(themes);
@@ -58,7 +58,7 @@ export default function AdminSkin() {
     }, [])
 
   useEffect(() =>{
-    console.log("currTheme changed", currTheme);
+    // console.log("currTheme changed", currTheme);
     if (currTheme) {
         getTheme(currTheme);
     }
@@ -69,7 +69,7 @@ export default function AdminSkin() {
             url: `/theme/${themeName}`,
             method: "GET",
         }).then(res => {
-            console.log("fetch theme ->", res.data);
+            // console.log("fetch theme ->", res.data);
             setTheme(res.data);
         }).catch(err => {
             console.log("get theme failed", err);
@@ -161,7 +161,7 @@ function SkinDetail(props) {
             needToken: true,
         }).then(res => {
             setCurrTheme(name);
-            console.log("PATCH /setting/theme", res.data);
+            // console.log("PATCH /setting/theme", res.data);
         }).catch(err => {
             console.log("PATCH /setting/theme failed", err);
         })

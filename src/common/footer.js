@@ -7,13 +7,13 @@ export default function Footer() {
   
   /* change langaue */
   const changeLanguage = () => {
-    if(i18n.language && i18n.language == "en") {
+    if(i18n.language && i18n.language === "en") {
       i18n.changeLanguage("zh");
     } else {
       i18n.changeLanguage("en");
     }
   } 
-  
+
   return (
     <div className="footer-main header-main">
       <div className="footer-wraper">

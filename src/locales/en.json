@@ -30,7 +30,6 @@
       "buttonText": "Explore"
     }
   },
-
   "adminNav": {
     "link": "Link",
     "theme": "Theme",
@@ -40,17 +39,14 @@
     "home": "Home",
     "logout": "Logout"
   },
-
   "adminLink": {
     "addLink": "Add link",
     "editText":"Edit the title and url",
     "layerTitle": "Upload Image"
   },
-
   "adminTheme": {
     "list":"Theme List"
   },
-
   "adminSetting": {
     "profile": "Profile",
     "layerTitle": "Update Avatar",
@@ -61,12 +57,9 @@
   "pluginImageEditor": {
     "upload": "Upload your local image",
     "choose": "Choose from the gallery",
-    "confirm": "OK",
+    "confirm": "Save",
     "remove": "Remove current",
     "scale": "Scale"
-  },
-  "register": {
-    "title": "Register"
   },
   "login": {
     "title": "THE TOP LINK - Login",
@@ -79,5 +72,41 @@
     "error": "Incorrect username or password!",
     "register": "Sign Up",
     "noAccount": "No register?"
+  },
+  "register": {
+    "username": "username",
+    "password": "Password",
+    "email": "Email",
+    "title": "THE TOP LINK - Register",
+    "failedMsg": "Register failed, please try again later.",
+    "layerTitle": "Tips",
+    "tipsButton": "Got it",
+    "next": "Next",
+    "signup": "Sign Up",
+    "available": "Available",
+    "createAccount": "Create Account",
+    "usernameLong": "username must be between 4 and 16 characters long.",
+    "usernameLeast": "username must be at least 4 characters long.",
+    "usernameMost": "username cannot be longer than 16 characters.",
+    "usernameExist": "username already exists.",
+    "inputPassword": "please input your password.",
+    "inputEmail": "please input your email.",
+    "errorEmail": "this email is not valid.",
+    "emailLongth": "email length of 4-16 characters",
+    "usernameNumber": "user name must not be pure numbers",
+    "usernameSpecial": "user name cannot contain special characters",
+    "usernameError": "this username is not valid",
+    "passwordLength":"password length must be 6-16 characters",
+    "tagSelectMax": "Select up to 10 tags",
+    "tagSelectMin": "Select at least 1 tag",
+    "tagEmpty": "Empty tags cannot be added",
+    "tagExceed": "Tag character length cannot exceed 30 characters",
+    "tagExist": "Tag already exists",
+    "completeProfile": "Complete your profile",
+    "chooseCategory": "Choose the category",
+    "chooseTag": "Choose the tags (multi)",
+    "tagCustom": "Enter a custom label and press Enter to add",
+    "alreadyAccount": "Already an account?",
+    "login": "Log In"
   }
 }

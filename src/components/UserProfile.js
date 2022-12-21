@@ -166,7 +166,7 @@ export default function UserProfile(props) {
     window.open("/", "_blank");
   }
 
-  console.log("setting", setting);
+  // console.log("setting", setting);
   return (
     <Container>
       <Wraper>
