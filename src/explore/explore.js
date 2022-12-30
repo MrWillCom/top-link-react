@@ -5,6 +5,7 @@ import React from "react";
 import request from "../utils/request";
 import { RightSvg } from "../components/Svg";
 import { staticUrl } from "../utils/utils";
+import { withTranslation } from "react-i18next";
 import "./explore.css"
 
 
@@ -17,29 +18,58 @@ class Explore extends React.Component {
       totalPages: 99,
       userList: [],
       currentField: 0,
-      currentInterest: 0,
+      selectedTags: [],
       fields: [],
-      interests: [],
+      tags: [],
       isLoading: false,
       hasMore: true,
+      isEn: true,
+      inputValue: "",
     }
     this.handleScroll = this.handleScroll.bind(this);
   }
 
-  init() {
-    // console.log("init...")
+  getFields = () => {
     request({
       url: "/setting/fields",
       method: "GET",
     }).then(res => {
-      this.setState({ fields: res.data })
+      if (res && res.data) {
+        console.log(res.data)
+        this.setState({ fields: res.data });
+      }
     })
+  }
+
+  getTags() {
+
+    let url = "/setting/tags/default/en"
+    if (localStorage.getItem("i18nextLng") === "zh") {
+      url = "/setting/tags/default/zh"
+    }
+
     request({
-      url: "/setting/interest/primary",
+      url: url,
       method: "GET",
-    }).then(res => {
-      this.setState({ interests: res.data })
+    }).then (res => {
+      if (res && res.data) {
+        //console.log(res.data)
+        this.setState({ tags: res.data });
+      } 
     })
+  }
+
+  isEnglish() {
+    localStorage.getItem("i18nextLng") === "en" ? this.setState({ isEn: true }) : this.setState({ isEn: false });
+  }
+
+  init() {
+    // 判断语言
+    this.isEnglish();
+    // 获取字段信息
+    this.getFields();
+    // 获取标签信息
+    this.getTags();
   }
 
   handleScroll() {
@@ -48,7 +78,7 @@ class Explore extends React.Component {
     if (!hasMore && isLoading) {
       return;
     }
-  
+
     // 获取页面高度
     const { innerHeight } = window;
     // 获取页面滚动高度
@@ -56,7 +86,7 @@ class Explore extends React.Component {
     // 获取页面文档高度
     const { documentElement } = document;
     const { scrollHeight } = documentElement;
-  
+
     // 如果滚动距离超过页面高度的一半，则加载下一页数据
     if (scrollY + innerHeight >= scrollHeight / 2) {
       this.loadMore();
@@ -69,27 +99,27 @@ class Explore extends React.Component {
       return;
     }
     this.setState({ page: this.state.page + 1 }, () => {
-      let { page, perPage, totalPages, currentField, currentInterest } = this.state;
-      if (page === 0 || ( currentField === 0 && currentInterest === 0)) {
+      let { page, perPage, currentField, selectedTags} = this.state;
+      if (page === 0) {
         this.setState({ isLoading: false });
         return;
       }
-      // console.log(currentField, currentInterest, page, perPage)
+
+      let tags_name = selectedTags.map(item => item.name);
       request({
-        url: `/setting/explore?field_code=${currentField}&interest_code=${currentInterest}&page=${page}&limit=${perPage}`,
-        method: "GET"
+        url: `/setting/explore?page=${page}&limit=${perPage || 10}`,
+        method: "POST",
+        data: {field_code: currentField, tags: tags_name}
       }).then(res => {
-        if (res.count) {
-          this.setState({ totalPages: res.count })
-        }
-        this.setState({ userList: this.state.userList.concat(res.data), isLoading: false })
-        // console.log(`loadDone: ${page}, total pages: ${totalPages}`);
+        if (res && res.data) {
+          this.setState({ totalPages: res.count, isLoading: false, userList: [...this.state.userList, ...res.data] });
+        } 
       })
+
     })
   }
 
-  handleFieldChange(fieldId) {
-    this.state.currentField === fieldId ? this.setState({ currentField: 0 }) : this.setState({ currentField: fieldId })
+  getData() {
     this.initFilterLoad();
   }
 
@@ -97,11 +127,6 @@ class Explore extends React.Component {
     this.setState({ page: 0, totalPages: 99, isLoading: true, userList: [] }, () => {
       this.loadMore();
     })
-  }
-
-  handleInterestChange(interestId) {
-    this.state.currentInterest === interestId ? this.setState({ currentInterest: 0 }) : this.setState({ currentInterest: interestId })
-    this.initFilterLoad();
   }
 
   componentDidMount() {
@@ -113,40 +138,117 @@ class Explore extends React.Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
+  currentFiledIsActived(field) {
+    return this.state.currentField === field.id;
+  }
+
+  currentTagIsActived(tag) {
+    return this.state.selectedTags.includes(tag);
+  }
+
+  // 点击了身份信息
+  handleClickField(field) {
+    this.setState({ currentField: field.id }, () => {
+      this.getData();
+    })
+    
+  }
+
+  handleInput = (e) => {
+    this.setState({ inputValue: e.target.value })
+  }
+
+  // 点击标签
+  handleClickTag(tag) {
+    if (this.currentTagIsActived(tag)) {
+      this.setState({ selectedTags: this.state.selectedTags.filter(item => item !== tag) }, ()=> {
+        this.getData();
+      })
+    } else {
+      this.setState({ selectedTags: [...this.state.selectedTags, tag] }, ()=>{
+        this.getData();
+      })
+    }
+  }
+
+  // 按下回车键添加标签
+  handleTagAdd = (e) => {
+    if (e.keyCode !== 13) return;
+    this.inputSearch();
+  }
+
+  inputSearch() {
+    let {inputValue, tags, selectedTags} = this.state;
+
+    if (inputValue === "") return;
+    console.log("触发搜索")
+    let newTag = { name: inputValue, id: tags.length + 1 }
+    this.setState({ tags: [...tags, newTag] })
+    this.setState({ selectedTags: [...selectedTags, newTag] }, () => {
+      this.getData();
+    })
+    this.setState({ inputValue: "" })
+  }
+
   render() {
-    let that = this;
-    let { userList, currentField, currentInterest, fields, interests } = this.state;
+    const { fields, userList, tags } = this.state;
+    const { isEn } = this.state;
+    const {t} = this.props;
     return (
       <div className="explore-main">
         <Header bgColor="var(--gray-bg)" />
         <div className="explore-wraper">
           <div className="explore-container header-main">
-            <div className="white-box filter-box">
-              <div className="filter-title">1. 请选择身份</div>
-              <div className="field-content">
+            <div className="search-keyword white-box">
+              <div className="search">
+                <div className="search-tool">
+                <div className="search-box">
+                  <input type="text" placeholder={t("explore.placeholder")} onKeyUp={this.handleTagAdd} value={this.state.inputValue} onChange={this.handleInput}></input>
+                </div>
+                <div className="search-submit" onClick={()=>{this.inputSearch()}}>{t("explore.search")}</div>
+                </div>
+                <div className="hot">
+                  <div className="title">{t("explore.hot")}</div>
+                  <div className="list">
+                    <div className="item">ETH</div>
+                    <div className="item">Web</div>
+                    <div className="item">Other</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="fields white-box">
+              <div className="title">{t("explore.category")}</div>
+              <fieldset className="field">
                 {
-                  fields.map((field) => {
+                  fields && fields.map((field, index) => {
                     return (
-                      <div className={currentField === field.id ? 'field-item active-field' : 'field-item'} key={field.id} onClick={() => { that.handleFieldChange(field.id) }}>
-                        {field.name}
+                      <div
+                        className={this.currentFiledIsActived(field) ? "subitem active-subitem": "subitem"} key={index}
+                        onClick={() => { this.handleClickField(field)}}
+                      >
+                        <span>{isEn ? field.name_en : field.name}</span>
                       </div>
                     )
                   })
                 }
-              </div>
-
-              <div className="filter-title">2. 请选择领域</div>
-              <div className="field-content">
+              </fieldset>
+              <div className="title">{t("explore.tag")}</div>
+              <fieldset className="tags">
                 {
-                  interests.map((item) => {
+                  tags && tags.map((tag, index) => {
                     return (
-                      <div className={currentInterest === item.id ? 'field-item active-field' : 'field-item'} key={item.id} onClick={() => { this.handleInterestChange(item.id) }}>
-                        {item.name}
+                      <div
+                      className={this.currentTagIsActived(tag) ? "subitem active-subitem": "subitem"} key={index}
+                      onClick={() => {this.handleClickTag(tag)}}
+                      >
+                        <span>{tag.name}</span>
                       </div>
                     )
                   })
                 }
-              </div>
+              </fieldset>
             </div>
             <div className="user-box">
               {userList && userList.map((user, index) => {
@@ -159,8 +261,8 @@ class Explore extends React.Component {
               })}
 
             </div>
-            {this.state.isLoading && <div className="loading">加载中...</div>}
-            {!this.state.hasMore && <div className="no-more">没有更多了</div>}
+            {this.state.isLoading && <div className="loading">{t("explore.loading")}</div>}
+            {!this.state.hasMore && <div className="no-more">{t("explore.noMore")}</div>}
           </div>
         </div>
         <Footer />
@@ -168,7 +270,9 @@ class Explore extends React.Component {
     )
   }
 }
-export default Explore;
+
+export default withTranslation()(Explore);
+
 
 function User({ user }) {
   const handleRediretToProfile = () => {

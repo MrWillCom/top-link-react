@@ -108,5 +108,14 @@
     "tagCustom": "输入自定义标签，按下 Enter 添加",
     "alreadyAccount": "已有账号？",
     "login": "登录"
+  },
+  "explore": {
+    "placeholder": "搜索 例如 设计",
+    "search": "搜索",
+    "category": "类别",
+    "tag": "标签",
+    "hot": "热搜",
+    "loading": "加载中...",
+    "noMore": "没有更多了"
   }
 }

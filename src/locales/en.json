@@ -108,5 +108,15 @@
     "tagCustom": "Enter a custom label and press Enter to add",
     "alreadyAccount": "Already an account?",
     "login": "Log In"
+  },
+
+  "explore": {
+    "placeholder": "search e.g. eth",
+    "search": "Search",
+    "category": "Category",
+    "tag": "Tag",
+    "hot": "Hot",
+    "loading": "Loading...",
+    "noMore": "No more"
   }
 }

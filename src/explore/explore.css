@@ -25,9 +25,7 @@
   padding-left: 5px;
   padding-right: 5px;
 }
-.explore-wraper .filter-box {
-  padding-top: 25px;
-}
+
 
 .explore-wraper .field-content {
   width: 100%;
@@ -82,7 +80,6 @@
   flex-direction: column;
   align-items: center;
   padding-left: 10px;
-  width: 100px;
 }
 
 .explore-wraper .user-item .link {
@@ -92,6 +89,7 @@
 
 .explore-wraper .user-item .name .title {
   padding: 10px;
+  overflow-wrap: anywhere;
   font-size: 15px;
   font-weight: 600;
 }
@@ -117,11 +115,119 @@
 
 
 .explore-wraper .user-box .bio p {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .explore-wraper .no-more {
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+/* Search */
+
+.explore-wraper .search {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.explore-wraper .hot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.explore-wraper .hot .title {
+  padding-right: 10px;
+}
+
+.explore-wraper .hot .list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.explore-wraper .list .item {
+  font-size: 14px;
+  border: 1px solid var(--gray-bg);
+  border-radius: 50px;
+  margin: 0px 3px;
+  padding: 5px 15px;
+  color: var(--gray-text);
+}
+
+.explore-wraper .search-box {
+  border: 1px solid var(--gray-bg);
+  border-radius: 6px;
+  overflow: auto;
+}
+
+.explore-wraper .search-box input {
+  line-height: 1.5;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  overflow: hidden;
+  padding: 6px 10px;
+  width: 300px;
+}
+
+.explore-wraper fieldset {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.explore-wraper .subitem {
+  cursor: pointer;
+  margin: 4px 3px;
+  display: inline-flex;
+}
+
+.explore-wraper .subitem.active-subitem span {
+  border: 1px solid white;
+  background-color: #0071e3;
+  color: white;
+}
+
+.explore-wraper .subitem span {
+  padding: 3px 12px;
+  border-radius: 48px;
+  color: var(--gray-text);
+  border: 1px solid rgb(224 226 217);
+}
+
+
+.explore-wraper .fields {
+  margin-top: 10px;
+}
+
+.explore-wraper .title {
+  color: var(--black);
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.explore-wraper .search-tool {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.explore-wraper .search-submit {
+  color: white;
+  padding: 8px;
+  margin-left: 5px;
+  background: var(--blue);
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: scale .35s ease-in-out;
+}
+
+.explore-wraper .search-submit:hover {
+  transform: scale(1.02);
 }
