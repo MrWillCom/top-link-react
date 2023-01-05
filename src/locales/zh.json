@@ -6,12 +6,15 @@
     "login": "登录",
     "signup": "免 费 注 册",
     "logout": "退 出 登 录",
-    "admin": "管 理"
+    "admin": "管 理",
+    "news": "热 榜",
+    "index": "名片"
   },
   "footer": {
     "products": "产品",
-    "documents": "文档",
-    "community": "社区"
+    "documents": "友链",
+    "community": "社区",
+    "suggestion": "意见反馈"
   },
   "index": {
     "intro1": {

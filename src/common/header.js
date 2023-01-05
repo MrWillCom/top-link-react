@@ -8,12 +8,12 @@ export default function Header(props) {
   const { t } = useTranslation();
 
   const [hasToken, setHasToken] = React.useState(false);
+  
   React.useEffect(()=>{
     const token = getToken();
     if(token && token.length > 0){
       setHasToken(true);
     }
-
 
   }, [])
 
@@ -77,6 +77,16 @@ export default function Header(props) {
                       <div className="logo-desktop">THE TOP LINK</div>
                     </a>
                     <div className="nav-item">
+                      
+                      <div className="item">
+                        <a className="item-box" href="/">
+                          <div className="item-wraper">
+                            <span className="item-text">{t("header.index")}</span>
+                          </div>
+                        </a>
+                      </div>
+
+
                       <div className="item">
                         <a className="item-box" href="/explore">
                           <div className="item-wraper">
@@ -84,6 +94,15 @@ export default function Header(props) {
                           </div>
                         </a>
                       </div>
+
+                      <div className="item">
+                        <a className="item-box" href="https://news.the.top" target="_blank">
+                          <div className="item-wraper">
+                            <span className="item-text">{t("header.news")}</span>
+                          </div>
+                        </a>
+                      </div>
+
                     </div>
                   </div>
                 </div>

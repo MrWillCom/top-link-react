@@ -6,12 +6,15 @@
     "login": "Login",
     "signup": "Sign Up",
     "logout": "Logout",
-    "admin": "Admin"
+    "admin": "Admin",
+    "news": "TOP News",
+    "index": "Link"
   },
   "footer": {
     "products": "Products",
-    "documents": "Documents",
-    "community": "Community"
+    "documents": "Links",
+    "community": "Community",
+    "suggestion": "Suggestion"
   },
   "index": {
     "intro1": {
