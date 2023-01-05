@@ -1,0 +1,22 @@
+
+.about-wraper {
+  background-color: var(--gray-bg);
+  min-height: calc(100vh - 100px);
+  width: 100%;
+}
+
+@media screen and (min-width: 750px){
+  .about-wraper {
+    padding-top: 40px;
+  }
+}
+
+.about-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+.about-content .title {
+  color: var(--blue);
+}
