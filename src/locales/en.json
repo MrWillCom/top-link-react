@@ -121,5 +121,17 @@
     "hot": "Hot",
     "loading": "Loading...",
     "noMore": "No more"
+  },
+  "about": {
+    "q1": "1. What’s TOP LINK?",
+    "a1": "Answer: TOP LINK is a free bio-link homepage. Currently it supports Chinese and English. Tik Tok, Twitter, Youtube, other social accounts, websites, stores in one page, connect your social accounts, websites, stores and display your contents. Expect to become a web3 entry in the future.",
+    "q2": "2. Why THE TOP?",
+    "a2": "Answer: THE.TOP short-chain domain name is easy to remember and display; the theme page is more elegant; and at the same time, deepening the exploration service makes the website more social and promotional.",
+    "q3": "What do I need to know before register?",
+    "a3": "Answer: 1. The website is currently in the public beta stage; 2. Registered customers in the public beta stage will receive Gold Label certification, and all functions will be free in the later stage, and they will always have the management and revenue permissions of independent pages; 3. The prohibited external link information will be directly blocked and deleted.",
+    "q4": "Who are we?",
+    "a4": "A: We are a group of people who love technology and want to find their home in the network. Our operation mode is the prototype of DAO mode, and we also hope that more like-minded friends will contact us.",
+    "q5": "Road map?",
+    "a5": "Answer: This site uses React.js to build views and interactions, and the Python programming language develops the backend of the site. At present, the functions of the website are custom external link aggregation pages and exploration page functions. It is expected that the public beta will be completed in Q1 in 2023, reaching the functions and more theme templates of similar link aggregation websites; Q2 will release custom page permissions , increase the number of users Strengthen the social exploration function; Q3 adds user authentication system, develops access to web3; Q4 adds customer statistics and analysis system, and strengthens platform sharing and cooperation. Welcome to put forward valuable suggestions and opinions in the feedback link at the bottom of our website, and we will solve it as soon as possible."
   }
 }
