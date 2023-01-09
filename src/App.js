@@ -14,7 +14,7 @@ import About from './about';
 
 function App() {
   React.useEffect(() => {
-    ReactGA.initialize('G-ECJJD43HDZ');
+    ReactGA.initialize('UA-253414487-1');
     ReactGA.pageview(window.location.pathname);
   }, [])
   
