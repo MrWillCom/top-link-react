@@ -45,7 +45,10 @@
   "adminLink": {
     "addLink": "Add link",
     "editText":"Edit the title and url",
-    "layerTitle": "Upload Image"
+    "layerTitle": "Upload Image",
+    "deleteMsg": "Delete this forever ?",
+    "delete":"Delete",
+    "cancel": "Cancel"
   },
   "adminTheme": {
     "list":"Theme List"

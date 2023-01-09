@@ -45,7 +45,10 @@
   "adminLink": {
     "addLink": "添加新链接",
     "editText":"编辑标题与链接",
-    "layerTitle": "上传图片"
+    "layerTitle": "上传图片",
+    "deleteMsg": "永久删除此链接 ？",
+    "delete":"删除",
+    "cancel": "取消"
   },
   "adminTheme": {
     "list":"主题列表"

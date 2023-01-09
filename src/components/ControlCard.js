@@ -8,7 +8,7 @@ import request from "../utils/request";
 import ImageEditor from "./utily";
 import "./ControlCard.css";
 import { t } from "i18next";
-
+import { useTranslation } from "react-i18next";
 
 export default function ControlCard(props) {
 
@@ -231,6 +231,8 @@ function SwitchExtraItem(props) {
 
 // extraId = 1, 删除链接组件
 export function ExtraControlDelete({ deleteLink, link, setHeight, height }) {
+    const { t } = useTranslation();
+
     const handleClickDelete = () => {
         deleteLink(link.lid);
         request({
@@ -256,11 +258,11 @@ export function ExtraControlDelete({ deleteLink, link, setHeight, height }) {
     }
     return (
         <div className="extra-contron-item extra-control-delete">
-            <div className="header">删除</div>
-            <div className="content">是否要永久删除此链接?</div>
+            <div className="header">{t("adminLink.delete")}</div>
+            <div className="content">{t("adminLink.deleteMsg")}</div>
             <div className="ops">
-                <Button primary onClick={handleClickDelete}>确定</Button>
-                <Button onClick={handleClickCancle} aria-expanded={height !== 0} aria-controls="exam">取消</Button>
+                <Button primary onClick={handleClickDelete}>{t("adminLink.delete")}</Button>
+                <Button onClick={handleClickCancle} aria-expanded={height !== 0} aria-controls="exam">{t("adminLink.cancel")}</Button>
             </div>
         </div>
     )
