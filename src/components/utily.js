@@ -14,13 +14,13 @@ export default function ImageEditor(props) {
         - visible: 弹出框是否可见
         - setVisible: 设置弹出框是否可见
         - hasRemove: 是否有删除按钮
+        - hasChoose: 是否有相册选择功能
         - handleIconRemove: 点击删除图片的回调函数
         - handleIconResult: 点击确认图片的回调函数
     */
 
     const {t} = useTranslation();
-
-    const { title, setVisible, hasRemove, imageObject, handleRemove, handleResult } = props;
+    const { title, setVisible, hasRemove, imageObject, handleRemove, handleResult, hasChoose } = props;
     const [isOverlayShow, setIsOverlayShow] = React.useState(false);
     // mode 0 是上传模式，模式2是选择模式
     const [mode, setMode] = React.useState(0);
@@ -142,9 +142,9 @@ export default function ImageEditor(props) {
                     </div>
 
                     <div className="editor-ops">
-                        <div className="editor-button editor-select" onClick={handleModeChange}>
+                        {hasChoose && <div className="editor-button editor-select" onClick={handleModeChange}>
                             {t("pluginImageEditor.choose")}
-                        </div>
+                        </div>}
 
                         {hasRemove && <div className="editor-enter editor-button" onClick={handleImageRemove}>
                             {t("pluginImageEditor.remove")}

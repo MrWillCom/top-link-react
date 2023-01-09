@@ -126,7 +126,6 @@ export default function AdminLink() {
         setLinks(updatedList);
     };
 
-    /* 添加一个新的链接 */
     const addNewLink = () => {
         let newLink = {
             thumb: "",
@@ -144,7 +143,6 @@ export default function AdminLink() {
         setLinks(newLinks);
     }
 
-    // 删除一个链接
     const deleteLink = (lid) => {
         let newLinks = links.filter((link) => {
             return link.lid !== lid;

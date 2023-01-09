@@ -160,6 +160,7 @@ export default function AdminSetting() {
                 visible={isAvatarEditting} 
                 setVisible={setIsAvatarEditting}
                 hasRemove={false}
+                hasChoose={false}
                 handleRemove={handleAvatarRemove} 
                 handleResult={handleAvatarResult}
             />

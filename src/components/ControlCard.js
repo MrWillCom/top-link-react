@@ -148,6 +148,7 @@ export default function ControlCard(props) {
                 visible={isOverlayShow}
                 setVisible={setIsOverlayShow} 
                 hasRemove={false} 
+                hasChoose={true}
                 handleRemove={handleIconRemove} 
                 handleResult={handleIconResult}
             />

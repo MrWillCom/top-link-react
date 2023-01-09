@@ -23,7 +23,7 @@ export default function Footer() {
 
               <div className="item">
                 <div className="logo">THE TOP LINK</div>
-                <div className="email">admin@the.top</div>
+                <div className="email">Email: admin@the.top</div>
                 <div className="select-lang" onClick={changeLanguage}>{t("selectLang")}</div>
               </div>
 
@@ -40,7 +40,7 @@ export default function Footer() {
               
               <div className="item community">
                 <div className="item-title">{t("footer.community")}</div>
-                <a href="/" target="_blank">Discord</a>
+                <a href="https://discord.gg/NDeNQB9y" target="_blank">Discord</a>
                 <a href="https://support.qq.com/product/488339" target="_blank">{t("footer.suggestion")}</a>
               </div>
 
