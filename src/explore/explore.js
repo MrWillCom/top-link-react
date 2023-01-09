@@ -44,7 +44,7 @@ class Explore extends React.Component {
   getTags() {
 
     let url = "/setting/tags/default/en"
-    if (localStorage.getItem("i18nextLng") === "zh") {
+    if (localStorage.getItem("i18nextLng") === "zh" || localStorage.getItem("i18nextLng") === "zh-CN") {
       url = "/setting/tags/default/zh"
     }
 

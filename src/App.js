@@ -10,13 +10,14 @@ import Login from './user/login';
 import Register from './user/register';
 import About from './about';
 
-ReactGA.initialize('G-ECJJD43HDZ');
 
 
 function App() {
   React.useEffect(() => {
+    ReactGA.initialize('G-ECJJD43HDZ');
     ReactGA.pageview(window.location.pathname);
   }, [])
+  
   return (
     <div className="App">
       <BrowserRouter>
