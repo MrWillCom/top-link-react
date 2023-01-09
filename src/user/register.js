@@ -10,12 +10,14 @@ import { isEmail, isNumber, isUsername, isChinese, isContainSpecial } from '../u
 import "./register.css";
 import { Overlay } from '../components/utily';
 import { useTranslation } from 'react-i18next';
+import ReactGA from 'react-ga';
 
 export default function Register() {
   const { t, i18n } = useTranslation();
   const [isEn, setIsEn] = React.useState(i18n.language === "en" ? true : false);
 
   React.useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
     document.title = t("register.title");
   }, [])
 

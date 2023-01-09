@@ -1,5 +1,7 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import ReactGA from 'react-ga';
+import React from 'react';
 import Index from './index/index';
 import Admin from './admin';
 import Profile from './profile';
@@ -8,7 +10,13 @@ import Login from './user/login';
 import Register from './user/register';
 import About from './about';
 
+ReactGA.initialize('G-ECJJD43HDZ');
+
+
 function App() {
+  React.useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, [])
   return (
     <div className="App">
       <BrowserRouter>
