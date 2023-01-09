@@ -37,7 +37,7 @@ export default function AdminNav() {
     if(index===0) {
         navLeft = "15px";
     }
-    else if (i18n.language === 'zh') {
+    else if (i18n.language === 'zh' || i18n.language === 'zh-CN') {
         navLeft = `${index * 80 + 16}px`;
     } else {
         navLeft = `${index * 100 + 5}px`;
