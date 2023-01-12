@@ -3,16 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint-plugin-import": "^2.27.0",
     "i18next": "^22.4.5",
     "i18next-browser-languagedetector": "^7.0.1",
-    "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
     "react-animate-height": "^3.0.5",
     "react-avatar-editor": "^13.0.0",
     "react-dom": "^18.2.0",
     "react-frame-component": "^5.2.3",
-    "react-ga": "^3.3.1",
     "react-i18next": "^12.1.1",
     "react-scripts": "^5.0.1",
     "react-sortablejs": "^6.1.4",
@@ -23,7 +20,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
