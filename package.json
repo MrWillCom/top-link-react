@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint-plugin-import": "^2.27.0",
     "i18next": "^22.4.5",
     "i18next-browser-languagedetector": "^7.0.1",
     "pubsub-js": "^1.9.4",
