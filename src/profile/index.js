@@ -12,11 +12,13 @@ export default function Profile() {
     let [links, setLinks] = React.useState([]);
     const [theme, setTheme] = React.useState({});
 
-    
+    React.useEffect(() => {
+        document.title = `TOP LINK - ${params.username}`;
+    }, []) 
+
     React.useEffect(() => {
         getSetting(params.username);
         getLinks(params.username);
-        document.title = `TOP LINK - ${setting.page_title}`;
         // eslint-disable-next-line
     }, [params.username]);
 
