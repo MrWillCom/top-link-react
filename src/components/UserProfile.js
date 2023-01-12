@@ -106,6 +106,10 @@ const Content = styled.div`
 const BasicBg = styled.div`
   position: fixed;
   inset: 0px;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   z-index: -1;
   background-position: center center;
   background-size: cover;
