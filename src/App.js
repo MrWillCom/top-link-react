@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter,  Route, Routes} from 'react-router-dom';
 import React from 'react';
 import Index from './index/index';
 import Admin from './admin';
@@ -8,7 +8,6 @@ import Explore from './explore/explore';
 import Login from './user/login';
 import Register from './user/register';
 import About from './about';
-
 
 
 function App() {
