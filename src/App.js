@@ -1,6 +1,5 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import ReactGA from 'react-ga';
 import React from 'react';
 import Index from './index/index';
 import Admin from './admin';
@@ -14,8 +13,6 @@ import About from './about';
 
 function App() {
   React.useEffect(() => {
-    ReactGA.initialize('UA-253414487-1');
-    ReactGA.pageview(window.location.pathname);
   }, [])
   
   return (
