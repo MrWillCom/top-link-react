@@ -49,7 +49,7 @@ export default function Admin() {
                     <div className="nav-user admin-right">
                         <div className="user-link">
                             <div className="title">{t("adminNav.ownLink")}:
-                                <a className="link" target="_blank" href={"/" + username}>{"https://the.top/" + username}</a>
+                                <a className="link" target="_blank" href={"/" + username}>{"the.top/" + username}</a>
                             </div>
                         </div>
                         <div className="nav-tool">
