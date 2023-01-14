@@ -35,7 +35,8 @@ export default function Profile() {
             url: `/setting/user/${username}`,
             method: "GET",
         }).then(res => {
-            // console.log("get user successfully", res.data);
+            res.data["page_bio"] = res.data["page_bio"].replace("\\n","\n")
+            // console.log("debug:", res.data["page_bio"]);
             setSetting(res.data);
             getTheme(res.data.theme);
             // 获取并设置用户信息

@@ -97,6 +97,7 @@ const UserBio = styled.div`
   color: ${(props) => props.theme.bio_color};
   font-size: 16px;
   font-weight: 500;
+  white-space: pre-wrap;
 `;
 
 const Content = styled.div`
