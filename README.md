@@ -1,5 +1,3 @@
-# the-top-bio
-
 ## 介绍
 
 这里是 TOP LINK [the.top](the.top) 代码开源的前端部分。  
