@@ -227,6 +227,7 @@ export const LinkBox = styled.div`
   z-index: 0;
   overflow: hidden;
   margin-bottom: 16px;
+  -webkit-tap-highlight-color: transparent;
   border: 1px solid ${(props) => props.theme.link_border_color};
   background-color: ${(props) => props.theme.link_bg};
   color: ${(props) => props.theme.text_color};
@@ -305,6 +306,7 @@ export const LinkWraper = styled.a`
   appearance: none;
   box-sizing: border-box;
   vertical-align: middle;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 
@@ -323,6 +325,7 @@ export const LinkContent = styled(LinkWraper)`
 
 export const LinkDiv = styled.div`
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 function Link(props) {
