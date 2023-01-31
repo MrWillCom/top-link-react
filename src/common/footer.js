@@ -23,7 +23,7 @@ export default function Footer() {
 
               <div className="item">
                 <div className="logo">THE TOP LINK</div>
-                <div className="email">Email: admin@the.top</div>
+                <div className="email">Email: lookcos@gmail.com</div>
                 <div className="select-lang" onClick={changeLanguage}>{t("selectLang")}</div>
               </div>
 
