@@ -101,7 +101,7 @@ const UserBio = styled.div`
 `;
 
 const Content = styled.div`
-  margin-top: 48px;
+  margin-top: 32px;
 `;
 
 const BasicBg = styled.div`

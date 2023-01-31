@@ -56,7 +56,7 @@
   "adminSetting": {
     "profile": "Profile",
     "layerTitle": "Update Avatar",
-    "changeAvatar": "Upload New Avatar",
+    "changeAvatar": "Pick an image",
     "title": "Title",
     "bio": "Bio"
   },
