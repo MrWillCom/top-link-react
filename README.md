@@ -1,6 +1,6 @@
 ## 介绍
 
-这里是 TOP LINK [the.top](the.top) 代码开源的前端部分。  
+这里是 TOP LINK [the.top](https://the.top) 代码开源的前端部分。  
 这是一个单页应用，主要技术栈为 React.js，插件用的不多，主要使用了 styled-components 这个组件，另外很多CSS都是我手写的。
 
 ![profile](https://lookcos.cn/usr/uploads/2023/01/219428527.png)
